@@ -1,8 +1,9 @@
 <?php
-//require_once "connect.php";
+require_once "connect.php";
 //http://localhost/php/getvideo.php?tag1=notimeline&tag2=nopictures&tag3=conversation
 //http://localhost/php/getvideo.php?tag1=notimeline&tag2=nopictures&tag3=conversation&setting=Thuis&characters=Vrienden&year=1991-2000&emotion=3&happiness=3&amusing=3
-$con=mysqli_connect("localhost","root","","NOM");
+$con=mysqli_connect($db_host,$db_user,$db_pass,$db_name);
+
 $Tag1 =  $_GET["tag1"];
 $Tag2 =  $_GET["tag2"];
 $Tag3 =  $_GET["tag3"];
