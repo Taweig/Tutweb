@@ -54,16 +54,6 @@ String.prototype.repeat = function(num) {
       fadeinLoadedSlide: true,
       controlNavigationSpacing: 0,
       controlNavigation: 'thumbnails',
-  
-/*
-      thumbs: {
-        autoCenter: false,
-        fitInViewport: true,
-        orientation: 'vertical',
-        spacing: 0,
-        paddingBottom: 0
-      },
-*/
       keyboardNavEnabled: true,
       imageScaleMode: 'fill',
       imageAlignCenter:true,
@@ -91,5 +81,106 @@ String.prototype.repeat = function(num) {
       imgHeight: 360
   
     });
+    initializeMap();
 
 })(jQuery);
+
+    var map, infoBubble;
+
+    function toggleInfoBubble(marker){      
+
+      infoBubble.setContent('<div id="content">'+
+                              '<h6>'+marker.title+'</h6>'+
+                              '<p style="font-size:100%;">'+marker.description+'</p>'+
+                            '</div>');
+                            
+      infoBubble.open(map, marker);
+
+    }
+    
+    function initializeMap() {
+      var myLatlng = new google.maps.LatLng(52.176, 5.75);
+      
+      var styles = [
+        {
+          "elementType": "labels",
+          "stylers": [
+            { "visibility": "off" }
+          ]
+        },{
+          "featureType": "road",
+          "stylers": [
+            { "visibility": "off" }
+          ]
+        },{
+          "featureType": "administrative.province",
+          "stylers": [
+            { "visibility": "off" }
+          ]
+        },{
+        }
+      ]
+      
+      var mapOptions = {
+        zoom: 7,
+        center: myLatlng,
+        styles: styles
+      };
+      map = new google.maps.Map(document.getElementById('tuthutMap'), mapOptions);      
+      
+
+      infoBubble = new InfoBubble({
+        maxWidth: 300,
+        content: 'bla'
+      });
+
+      
+      loadMapMarkers();
+    }
+    
+    function loadMapMarkers(){
+      var image = 'images/tuthut-marker.png';
+      var image = {
+        url: 'images/tuthut-marker.png',
+        // This marker is 20 pixels wide by 32 pixels tall.
+        size: new google.maps.Size(36, 50),
+        // The origin for this image is 0,0.
+        origin: new google.maps.Point(0,0),
+        // The anchor for this image is the base of the flagpole at 0,32.
+        anchor: new google.maps.Point(18, 50)
+      };
+      
+      var locations = [];
+      $('#tuthutLocations tr').each(function(index){
+        var location = {}
+        location.lat            = $(this).data('lat');
+        location.lng            = $(this).data('lng');
+        location.title          = $(this).data('title');
+        location.description    = $(this).data('description');
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(location.lat, location.lng),
+          map: map,
+          title: location.title,
+          description: location.description,
+          icon: image
+        });
+        
+        
+        
+        
+        
+        
+        
+        
+        $(this).click((function(thisMarker){ return function(){
+          toggleInfoBubble(thisMarker);
+        }})(marker));
+        
+        google.maps.event.addListener(marker, 'click', (function(thisMarker){ return function(){
+          toggleInfoBubble(thisMarker);
+        }})(marker));
+        
+      });
+    }
+    

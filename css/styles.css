@@ -5,6 +5,30 @@
 #header {
   padding: 10% 0 5%;
 }
+.locations {
+  margin-bottom: 100px;
+}
+.locations .col-md-4 > div,
+.locations .col-md-8 > div {
+  border: 2px solid #b0b0b0;
+  background-clip: padding-box;
+  overflow: auto;
+  height: 400px;
+}
+.locations .col-md-4 > div {
+  border-radius: 5px 0 0 5px;
+  border-right: 0;
+  margin-right: -15px;
+  border-right: 2px solid #b0b0b0;
+}
+.locations .col-md-4 > div .table {
+  margin-bottom: 0;
+}
+.locations .col-md-8 > div {
+  border-radius: 0 5px 5px 0;
+  border-left: 0;
+  margin-left: -15px;
+}
 @media (min-width: 768px) and (max-width: 992px) {
   .form-container .container {
     width: 900px;
@@ -36,7 +60,7 @@
 }
 #video-gallery {
   width: 100%;
-  padding-bottom: 50px;
+  margin-bottom: 100px;
 }
 .videoGallery.rsDefault .rsThumbsHor {
   width: 100%;
