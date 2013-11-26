@@ -7,6 +7,9 @@
 // Utility mixins for greater good
 @import "mixins";
 
+
+@import "../video-js/video-js.min.css";
+
 //
 // Responsive: Landscape phone
 // --------------------------------------------------
@@ -42,6 +45,23 @@
   .tuthut-map{
   }
   
+  
+.vjs-default-skin .vjs-big-play-button{
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  margin-top: -1.5em;
+  margin-left: -1.5em;
+  
+  &:before {
+    line-height: 2.8em;
+    left: .1em;
+    text-shadow: none;
+  }
+
+}
   
   
 @media (min-width: @screen-sm-min) and (max-width: @screen-md-min){

@@ -73,8 +73,8 @@ String.prototype.repeat = function(num) {
         spacing: 20
       },
       autoScaleSlider: true, 
-      autoScaleSliderWidth: 960,     
-      autoScaleSliderHeight: 580,
+      autoScaleSliderWidth: 1140,     
+      autoScaleSliderHeight: 760,
   
       /* size of all images http://help.dimsemenov.com/kb/royalslider-jquery-plugin-faq/adding-width-and-height-properties-to-images */
       imgWidth: 640,
@@ -82,8 +82,151 @@ String.prototype.repeat = function(num) {
   
     });
     initializeMap();
+    
+    
 
+    videojs("tutvideo").ready(function(){
+      var video = this;
+    
+      console.log(video.contentEl());
+      
+      
+      var audio = document.createElement('audio');
+      audio.setAttribute("preload", "auto");
+      audio.autobuffer = true;
+      
+      var source1   = document.createElement('source');
+      source1.type  = 'audio/wav';
+      source1.src   = $(video.contentEl()).find("> video").data('audio-src');
+      audio.appendChild(source1);
+      audio.load();
+      
+       
+      console.log('video',video);
+       
+       
+      audio.volume = 1;
+      
+      
+      video.on('volumechange', function(e){
+        audio.volume = video.volume();
+      });
+      video.on('play', function(e){
+        audio.play();
+      });
+      video.on('pause', function(e){
+        audio.pause();
+      });
+      video.on('ended', function(e){
+        audio.pause();
+      });
+      video.on('timeupdate', function(){
+        if(Math.ceil(audio.currentTime) != Math.ceil(video.currentTime())){
+          audio.currentTime = video.currentTime();
+        }
+      });
+    });
+    
 })(jQuery);
+
+
+
+var getVideos = function(){
+
+	var tag1 = document.getElementById('tag1').value;
+	var tag2 = document.getElementById('tag2').value;
+	var tag3 = document.getElementById('tag3').value;
+	var year = document.getElementById('YearTag').value;
+	var setting = document.getElementById('SettingTag').value;
+	var character = document.getElementById('CharacterTag').value;
+	var emotion = document.getElementById('slider1').value;
+	var happiness = document.getElementById('slider2').value;
+	var amusing = document.getElementById('slider3').value;
+	
+	
+	//vraag database naar alle resultaten die gelijk zijn aan tag1
+	////?tag1=' +tag1+ '&tag2=' +tag2+ '&tag3=' +tag3 +'&setting=' +setting +'&characters=' +character +'&year=' +year +'&emotion=' +emotion +'&happiness=' +happiness +'&amusing=' +amusing +' ',
+	
+	
+  var request = $.ajax({
+    url: 'php/getvideo.php?tag1=' +tag1+ '&tag2=' +tag2+ '&tag3=' +tag3 +'&setting=' +setting +'&characters=' +character +'&year=' +year +'&emotion=' +emotion +'&happiness=' +happiness +'&amusing=' +amusing +' ',	
+		type : 'POST',
+		dataType: 'json',
+		success : function (result) {
+		
+		  console.log(result);
+			
+			var PHPresult = result['thumbnailsource'];
+			//console.log(PHPresult);
+			function compare(a,b) {
+				if (a.resemblance > b.resemblance)
+					return -1;
+				if (a.resemblance < b.resemblance)
+					return 1;
+					return 0;
+			}
+			PHPresult.sort(compare);
+			
+			var counts = {};
+			for (var i = 0; i < PHPresult.length; i++) {
+				counts[PHPresult[i].resemblance] =1 + (counts[PHPresult[i].resemblance] || 0);
+			}
+			//console.log(counts);
+			var a = Object.keys(counts).length;		//aantal waardes in counts
+			var b = counts[Object.keys(counts)[0]];	//aantal per waarde 
+			
+			for (var i=0; i< (PHPresult.length);i++){
+				var left = 100*i;
+				var top = 0;
+				var times = 0;
+				//var resemblance = parseInt(PHPresult[i].resemblance);
+				
+				div = $("<img />")
+				div.attr("id", 'lol');
+				div.attr("src", PHPresult[i].thumbnailsource);
+				div.attr("class", "thumb");
+				div.attr("onclick", "playVideo('"+PHPresult[i].videosource+"')");
+				div.attr("Title",PHPresult[i].resemblance);
+				 $("#thumbnails").append(div)
+			}
+		}	
+	});
+	request.fail(function( jqXHR, textStatus ) {
+	  alert( "Request failed: " + textStatus );
+	});
+};
+
+
+
+
+
+
+
+    function examplePlugin(options) {
+      this.on('play', function(e) {
+        console.log('playback has started!');
+      });
+    };
+    vjs.plugin('examplePlugin', examplePlugin);
+    
+    /*
+vjs('example_video_1', {
+      plugins: {
+        examplePlugin: {
+          exampleOption: true
+        }
+      }
+    });
+*/
+
+
+
+
+
+
+
+
+
 
     var map, infoBubble;
 
@@ -184,3 +327,8 @@ String.prototype.repeat = function(num) {
       });
     }
     
+
+
+
+
+

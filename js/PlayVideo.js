@@ -62,7 +62,7 @@ function applyTags(){
 		dataType: 'json',
 		success : function (result) {
 			PHPresult = result['thumbnailsource'];
-			console.log(PHPresult);
+			//console.log(PHPresult);
 			function compare(a,b) {
 				if (a.resemblance > b.resemblance)
 					return -1;
