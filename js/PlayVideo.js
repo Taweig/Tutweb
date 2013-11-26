@@ -56,7 +56,7 @@ function applyTags(){
 	var amusing = document.getElementById('slider3').value;	
 	//vraag database naar alle resultaten die gelijk zijn aan tag1
 	////?tag1=' +tag1+ '&tag2=' +tag2+ '&tag3=' +tag3 +'&setting=' +setting +'&characters=' +character +'&year=' +year +'&emotion=' +emotion +'&happiness=' +happiness +'&amusing=' +amusing +' ',
-var request = $.ajax({
+	var request = $.ajax({
 		url: 'php/getvideo.php?tag1=' +tag1+ '&tag2=' +tag2+ '&tag3=' +tag3 +'&setting=' +setting +'&characters=' +character +'&year=' +year +'&emotion=' +emotion +'&happiness=' +happiness +'&amusing=' +amusing +' ',	
 		type : 'POST',
 		dataType: 'json',
