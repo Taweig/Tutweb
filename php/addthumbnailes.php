@@ -19,7 +19,6 @@ while($row = mysqli_fetch_array($result)){
 	}
 	
 	array_push($array, $x);
-	//echo $row[0];;
 }
 //$array
 $noTNresults = array(       
