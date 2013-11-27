@@ -89,11 +89,14 @@ function applyTags(){
 				div = $("<img />")
 				div.attr("id", 'lol');
 				div.attr("src", PHPresult[i].thumbnailsource);
+				div.attr("class", "thumb");
+/*
 				div.attr("width",'100');
 				div.attr("height",'100');
 				div.css("top",top);
 				div.css("left",left);
 				div.css("position",'absolute');
+*/
 				div.attr("onclick", "playVideo('"+PHPresult[i].videosource+"')");
 				div.attr("Title",PHPresult[i].resemblance);
 				 $("#thumbnails").append(div)

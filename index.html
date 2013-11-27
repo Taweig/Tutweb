@@ -1,125 +1,228 @@
-<!DOCTYPE html>
-<!-- testjeDavid2 -->
-<html>
-<head>
-    <title></title>
-</head>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Flat UI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<body>
-    <video id='videoplayer' width="320" height="240">
-    <source src="movie.mp4" type="video/mp4">
-    <source src="movie.ogg" type="video/ogg">Your browser does not support the video tag.</video> <audio id='audioplayer'>
-    <source src="horse.ogg" type="audio/ogg">
-    <source src="horse.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio><br>
-    <img id='orangebar' src='img/orangebar.jpg' width="10" height="20" onclick='stopVideo()'><br>
-    <img src='img/play.png' width="50" height="50" onclick='startVideo()'> <img src='img/pause.png' width="50" height="50" onclick='stopVideo()'><br>
-    Tag1:
+    <!-- Loading Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 
-    <form>
-        <input id='tag1' type="text" name="tag1" value='notimeline'><br>
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">  
+    <link href="css/royalslider/royalslider.css" rel="stylesheet">
+    <link href="css/royalslider/skins/minimal-white/rs-minimal-white.css" rel="stylesheet">
+  
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="images/logo.png" alt="Tuthut"></a>
+        </div>
+      
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default sr-only">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </div>
+    </nav>
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div id="video-gallery" class="royalSlider videoGallery rsDefault">
+            <a class="rsImg" data-rsw="843" data-rsh="473" data-rsvideo="http://www.youtube.com/watch?v=HFbHRWwyihE" href="http://dimsemenov.com/plugins/royal-slider/img/admin-video.png">
+              <img class="rsTmb" src="images/thumb.jpg">
+            </a>
+            <a class="rsImg" data-rsvideo="https://vimeo.com/45830194" href="http://b.vimeocdn.com/ts/319/715/319715493_640.jpg">
+              <img class="rsTmb" src="images/thumb.jpg">
+            </a>
+            <div class="rsContent">
+              <a class="rsImg" data-rsvideo="https://vimeo.com/31240369" href="http://b.vimeocdn.com/ts/210/393/210393954_640.jpg">
+                <img class="rsTmb" src="images/thumb.jpg">
+              </a>
+              <h3 class="rsABlock sampleBlock">Animated block, to show you that you can put anything you want inside each slide.</h3>
+            </div>
+             <a class="rsImg" data-rsvideo="https://vimeo.com/44878206" href="http://b.vimeocdn.com/ts/311/891/311891198_640.jpg">
+              <img class="rsTmb" src="images/thumb.jpg">
+            </a>
+            <a class="rsImg" data-rsvideo="https://vimeo.com/45778774" href="http://b.vimeocdn.com/ts/318/502/318502540_640.jpg">
+              <img class="rsTmb" src="images/thumb.jpg">
+            </a>
+             <a class="rsImg" data-rsvideo="https://vimeo.com/41132461" href="http://b.vimeocdn.com/ts/284/709/284709146_640.jpg">
+              <img class="rsTmb" src="images/thumb.jpg">
+            </a>
+            <a class="rsImg" data-rsvideo="hhttps://vimeo.com/44388232" href="http://b.vimeocdn.com/ts/308/375/308375094_640.jpg">
+              <img class="rsTmb" src="images/thumb.jpg">
+            </a>
+            <a class="rsImg" data-rsvideo="http://www.youtube.com/watch?v=VDspPKDMBMo" href="../img/video/02.jpg">
+              <img class="rsTmb" src="images/thumb.jpg">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row locations">
+        <div class="col-md-4">
+          <div>
+            <table class="table table-striped table-hover" id="tuthutLocations">
+              <tbody>
+                <tr data-lat="52.515" data-lng="5.50" data-title="Lelystad" data-description="Cum sociis natoque penatibus et magnis dis parturient montes">
+                  <td>Lelystad</td>
+                  <td>14 november</td>
+                </tr>
+                <tr data-lat="52.366" data-lng="4.89" data-title="Amsterdam" data-description="Cum sociis natoque penatibus et magnis dis parturient montes">
+                  <td>Amsterdam</td>
+                  <td>16 november</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-8 tuthut-map">
+          <div id="tuthutMap"></div>
+        </div>
+      </div>
+      
+      
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Give this quartet a few art.</h2>
+          <div class="row">
+            <div class="col-md-7">
+              <p class="lead">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+              <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. <strong>Donec ullamcorper</strong> nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+            </div>
+            <div class="col-md-5">
+              <img src="images/description-image.jpg" class="img-rounded img-responsive" />
+              <p class="img-comment"><strong>Note:</strong> gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+
+      <video id='videoplayer' width="320" height="240">
+        <source src="movie.mp4" type="video/mp4">
+        <source src="movie.ogg" type="video/ogg">Your browser does not support the video tag.
+      </video>
+      
+      <audio id='audioplayer'>
+        <source src="horse.ogg" type="audio/ogg">
+        <source src="horse.mp3" type="audio/mpeg">Your browser does not support the audio element.
+      </audio>
+      
+      <br>
+      <img id='orangebar' src='img/orangebar.jpg' width="10" height="20" onclick='stopVideo()'><br>
+      <img src='img/play.png' width="50" height="50" onclick='startVideo()'> 
+      <img src='img/pause.png' width="50" height="50" onclick='stopVideo()'><br>
+      
+      <form>
+        Tag1: <input id='tag1' type="text" name="tag1" value='notimeline'><br>
         Tag2: <input id='tag2' type="text" name="tag2" value='nopictures'><br>
         Tag3: <input id='tag3' type="text" name="tag3" value='conversation'><br>
-        In welk jaar speelt het verhaal zich af? <select id='YearTag'>
-            <option value="">
-                leave Empty
-            </option>
-
-            <option value="1920">
-                1920-1930
-            </option>
-
-            <option value="1931">
-                1931-1940
-            </option>
-
-            <option value="1941">
-                1941-1950
-            </option>
-
-            <option value="1951">
-                1951-1960
-            </option>
-
-            <option value="1961">
-                1961-1970
-            </option>
-
-            <option value="1971">
-                1971-1980
-            </option>
-
-            <option value="1981">
-                1981-1990
-            </option>
-
-            <option value="1991">
-                1991-2000
-            </option>
-
-            <option value="2001">
-                2001-2010
-            </option>
-        </select><br>
-        Waar speelt het verhaal zich af? <select id='SettingTag'>
-            <option value="">
-                leave Empty
-            </option>
-
-            <option value="Thuis">
-                Thuis
-            </option>
-
-            <option value="Onderweg">
-                Onderweg
-            </option>
-
-            <option value="Buiten">
-                Buiten
-            </option>
-
-            <option value="Natuur">
-                In de natuur
-            </option>
-
-            <option value="School">
-                Op school
-            </option>
-        </select><br>
-        Wie zijn de hoofdrolspelers in het verhaal? <select id='CharacterTag'>
-            <option value="">
-                leave Empty
-            </option>
-
-            <option value="Familie">
-                Familie
-            </option>
-
-            <option value="Vrienden">
-                Vrienden
-            </option>
-
-            <option value="Collega">
-                Collega's
-            </option>
-
-            <option value="Medestudenten">
-                Medestudenten
-            </option>
-
-            <option value="Onbekenden">
-                Onbekenden
-            </option>
-        </select><br>
-        Blij <input type="range" value="3" id="slider1" min="1" max="5" style='position:absolute; left:200px'> Verdrietig<br>
-        Gelukkig <input type="range" value="3" id="slider2" min="1" max="5" style='position:absolute; left:200px'> Ongelukkig<br>
-        Vermakelijk <input type="range" value="3" id="slider3" min="1" max="5" style='position:absolute; left:200px'> Interesant<br>
-        <input type="submit" onclick="applyTags()"> <script src="js/jquery-1.10.1.min.js">
-</script> <script src='js/PlayVideo.js'>
-</script><br>
+        
+        In welk jaar speelt het verhaal zich af?
+        <select id='YearTag'>
+          <option value="">leave Empty</option>  
+          <option value="1920">1920-1930</option>  
+          <option value="1931">1931-1940</option>  
+          <option value="1941">1941-1950</option>  
+          <option value="1951">1951-1960</option>  
+          <option value="1961">1961-1970</option>  
+          <option value="1971">1971-1980</option>  
+          <option value="1981">1981-1990</option>  
+          <option value="1991">1991-2000</option>  
+          <option value="2001">2001-2010</option>
+        </select>
+        <br>
+        
+        Waar speelt het verhaal zich af? 
+        <select id='SettingTag'>
+          <option value="">leave Empty</option>  
+          <option value="Thuis">Thuis</option>
+          <option value="Onderweg">Onderweg</option>
+          <option value="Buiten">Buiten</option>  
+          <option value="Natuur">In de natuur</option>  
+          <option value="School">Op school</option>
+        </select>
+        <br>
+        
+        Wie zijn de hoofdrolspelers in het verhaal?
+        <select id='CharacterTag'>
+          <option value="">leave Empty</option>  
+          <option value="Familie">Familie</option>  
+          <option value="Vrienden">Vrienden</option>  
+          <option value="Collega">Collega's</option>  
+          <option value="Medestudenten">Medestudenten</option>  
+          <option value="Onbekenden">Onbekenden</option>
+        </select>
+        <br>
+        
+        Blij <input type="range" value="3" id="slider1" min="1" max="5"> Verdrietig<br>
+        Gelukkig <input type="range" value="3" id="slider2" min="1" max="5"> Ongelukkig<br>
+        Vermakelijk <input type="range" value="3" id="slider3" min="1" max="5"> Interesant<br>
+        
+        <input type="submit" onclick="applyTags()">
         <br>
         <br>
-    </form>
+      </form>
+  
+      <div id="thumbnails"></div>
 
-    <div id='thumbnails' style="position:absolute; top:650"></div>
-</body>
+    </div>
+    <!-- /.container -->
+
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="js/royalslider/jquery.royalslider.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script type="text/javascript">
+      var script = '<script type="text/javascript" src="http://google-maps-' +
+          'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble';
+      if (document.location.search.indexOf('compiled') !== -1) {
+        script += '-compiled';
+      }
+      script += '.js"><' + '/script>';
+      document.write(script);
+    </script>
+    
+    <script src="js/PlayVideo.js"></script>
+    <script src="js/application.js"></script>
+  </body>
 </html>
