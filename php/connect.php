@@ -1,5 +1,5 @@
 <?php
-require_once("config.php")
+require_once 'config.php';
 $con= @mysql_connect("$db_host","$db_user","$db_pass")
 or die ("Kan geen verbinding maken met MySQL.");
 
