@@ -24,7 +24,7 @@ $totalDirectorySize = 0;
 if ($handle = opendir($dir)) {
 	while (($file = readdir($handle)) !== false){
 		if (!in_array($file, array('.', '..')) && !is_dir($dir.$file)) {	
-			if (  substr(strrchr($file,'.'),1) == 'webm'){
+			if (  substr(strrchr($file,'.'),1) == 'webm' || substr(strrchr($file,'.'),1) == 'wav' || substr(strrchr($file,'.'),1) == 'png'){
 				$i++;   
 				array_push ($a,$file);
 				$size = filesize('transfers/'.$file);
