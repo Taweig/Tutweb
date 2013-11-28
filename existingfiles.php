@@ -1,7 +1,7 @@
 <?php
 
 $i = 0; 
-$dir = 'videos/';
+$dir = 'uploads/';
 $b=array();
 $totalDirectorySize = 0;
 
@@ -11,7 +11,7 @@ if ($handle = opendir($dir)) {
 			if (  substr(strrchr($file,'.'),1) == 'webm'){
 				$i++;   
 				array_push ($b,$file);
-				$size = filesize('videos/'.$file);
+				$size = filesize('uploads/'.$file);
 				$totalDirectorySize += $size;  
 			}
 		}
