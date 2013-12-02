@@ -88,6 +88,7 @@ function initializeFeaturedSlider(){
     loop: false,
     loopRewind: true,
     numImagesToPreload: 3,
+    sliderDrag: false,
     video: {
       autoHideArrows:true,
       autoHideControlNav:false,
@@ -124,11 +125,6 @@ function initializeFeaturedSlider(){
     source1.src   = $(video.contentEl()).find("> video").data('audio-src');
     audio.appendChild(source1);
     audio.load();
-    
-     
-    console.log('video',video);
-     
-     
     audio.volume = 1;
     
     
