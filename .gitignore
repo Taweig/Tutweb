@@ -2,3 +2,4 @@ uploads/*
 php/transfers/*
 php/config.php
 node_modules/*
+php/crud/config.php
