@@ -201,7 +201,7 @@ function getVideos(){
 
     }
     
-    function initializeMap() {
+    function initializeMap() {    
       var myLatlng = new google.maps.LatLng(52.176, 5.75);
       
       var styles = [
@@ -243,7 +243,7 @@ function getVideos(){
     
     function loadMapMarkers(){
       var image = {
-        url: 'images/tuthut-marker.png',
+        url: 'assets/images/tuthut-marker.png',
         // This marker is 20 pixels wide by 32 pixels tall.
         size: new google.maps.Size(36, 50),
         // The origin for this image is 0,0.
