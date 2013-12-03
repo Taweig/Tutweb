@@ -8,7 +8,10 @@ module.exports = function(grunt) {
         stripBanners: false
       },
       application: {
-        src: ['assets/js/_*.js'],
+        src: ['assets/js/_*.js',
+              'assets/js/*.js',
+              '!assets/js/<%= pkg.name %>*.js'
+              ],
         dest: 'assets/js/<%= pkg.name %>.js'
       },
       plugins: {
@@ -30,7 +33,10 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      files: ['Gruntfile.js', 'assets/js/_*.js'],
+      files: ['Gruntfile.js',
+              'assets/js/*.js',
+              '!assets/js/<%= pkg.name %>*.js'
+              ],
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -78,7 +84,7 @@ module.exports = function(grunt) {
         tasks: ['recess']
       },
       jshint: {
-        files: ['<%= jshint.files %>'],
+        files: ['<%= jshint.files %>', '<%= concat.plugins.src %>'],
         tasks: ['jshint','concat','uglify']
       }
     }
