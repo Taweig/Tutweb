@@ -29,25 +29,6 @@ module.exports = function(grunt) {
         dest: 'assets/js/<%= pkg.name %>.plugins.min.js'
       }
     },
-/*
-    clean: {
-      dist: ['dist']
-    },
-    copy: {
-      bootstrap: {
-        files: [{expand: true, src: ['bootstrap/**'], dest: 'assets/'}]
-      },
-      vendor: {
-        files: [{expand: true, src: ['js/vendor/*'],  dest: 'assets/js/vendor'}]
-      },
-      fonts: {
-        files: [{expand: true, src: ['fonts/**'],     dest: 'assets/'}]
-      },
-      images: {
-        files: [{expand: true, src: ['images/**'],    dest: 'assets/'}]
-      }
-    },
-*/
     jshint: {
       files: ['Gruntfile.js', 'assets/js/_*.js'],
       options: {
@@ -119,12 +100,9 @@ module.exports = function(grunt) {
 
   // CSS distribution task.
   grunt.registerTask('dist-css', ['recess']);
-
-  // COPY distribution task.
-  /* grunt.registerTask('dist-copy', ['copy']); */
   
   // Full distribution task.
-  grunt.registerTask('dist', [ /*'clean', 'copy', */ 'dist-css', 'dist-js']);
+  grunt.registerTask('dist', ['dist-css', 'dist-js']);
 
 
   grunt.registerTask('default', ['jshint', 'dist']);
