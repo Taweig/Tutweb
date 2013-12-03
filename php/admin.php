@@ -14,6 +14,7 @@
         <th class="site_name">Name</th>
         <th>date </th>
         <th>videosource</th>
+        <th>audiosource</th>
         <th>thumbnailsource</th>
         <th>tags</th>
         <th>setting</th>
@@ -25,18 +26,6 @@
   </tbody>
 </table>
 <br />
-
-<form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>"> 
-<input type="Submit" name="copyfiles" value="upload everything new to the webserver" onclick="viewUpload()"> 
-</form>
-
-<script>
-function viewUpload(){
-window.open("http://localhost/Tutweb/php/fileupload.php","_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
-}
-
-</script>
-
 
 <?php
 
