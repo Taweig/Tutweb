@@ -1,6 +1,6 @@
 <?php include_once( 'views/header.php' );
 	include_once( 'libs/getData.php' );
-	include( 'libs/editData.php' );
+	include_once( 'libs/editData.php' );
 ?>
 
 	<h2 class="left"> Edit Some Table </h2>
@@ -26,11 +26,13 @@
 						<p class="help-block">'.$value['Type'].'</p>
 						';
 					}
-					elseif($field_name == 'Thumbnailsource' && $someData[$field_name] ==""){					
+					elseif($field_name == 'Thumbnailsource' ){					
 							echo '<label for="Thumbnailsource">Filename:</label>
-							<input type="file" name="file" id="file"><br>
-							<input type="text" name="Thumbnailsource" id="Thumbnailsource">
-							';
+							<input type="file" name="file" id="file"><br>';
+							if ($someData[$field_name] != null){
+							echo '<p>current image:</p><br>';
+							echo '<img src='.$someData[$field_name].' height=150 width = 150/>';	
+							}
 					}
 					else
 					{
