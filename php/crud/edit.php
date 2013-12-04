@@ -1,6 +1,6 @@
 <?php include_once( 'views/header.php' );
 	include_once( 'libs/getData.php' );
-	include_once( 'libs/editData.php' );
+	include( 'libs/editData.php' );
 ?>
 
 	<h2 class="left"> Edit Some Table </h2>
@@ -28,7 +28,7 @@
 					}
 					elseif($field_name == 'Thumbnailsource' && $someData[$field_name] ==""){					
 							echo '<label for="Thumbnailsource">Filename:</label>
-							<input type="file" name="Thumbnailfile" id="Thumbnailfile"><br>
+							<input type="file" name="file" id="file"><br>
 							<input type="text" name="Thumbnailsource" id="Thumbnailsource">
 							';
 					}
