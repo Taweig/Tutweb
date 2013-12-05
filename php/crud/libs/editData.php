@@ -18,6 +18,7 @@
 			}
 			else{
 				//$dir = $_SERVER['HTTP_HOST']."/uploads/";
+				
 				$dir = "../../uploads/";
 				move_uploaded_file($_FILES["file"]["tmp_name"],	$dir . $_FILES["file"]["name"]);
 				echo "Stored in: " . $dir . $_FILES["file"]["name"];
@@ -54,8 +55,11 @@
 				imagejpeg($thumbnailimage_p, $thumbnailname);
 				unlink($filename);
 				//wont work on localhost because of the 'Tutweb' directory 
-				$postername =  $_SERVER['HTTP_HOST']."/uploads/".$currenttime.'_poster.jpg';
-				$thumbnailname =   $_SERVER['HTTP_HOST']."/uploads/".$currenttime.'_thumbnail.jpg';
+				
+//$site_url =  "http://".$_SERVER['HTTP_HOST']."/Tutweb";
+				$postername =  site_url."/uploads/".$currenttime.'_poster.jpg';
+				$thumbnailname =   site_url."/uploads/".$currenttime.'_thumbnail.jpg';
+				//."/uploads/".$currenttime.'_thumbnail.jpg';
 			}
 		}
 		
