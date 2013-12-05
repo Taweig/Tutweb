@@ -21,6 +21,7 @@ var KofferStory = {
   stories: {
     init: function() {
       // JS here
+      initializeStories();
     }
   }
 };

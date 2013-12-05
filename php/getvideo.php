@@ -5,6 +5,7 @@ require_once "connect.php";
 $con=mysqli_connect($db_host,$db_user,$db_pass,$db_name);
 $searchvariables = false;
 
+/*
 if(
   isset($_GET["tag1"]) &&
   isset($_GET["tag2"]) && 
@@ -16,6 +17,7 @@ if(
   isset($_GET["happiness"]) && 
   isset($_GET["amusing"])
   ){
+*/
 
 $searchvariables = true;
 
@@ -24,43 +26,50 @@ $Tag2           = $_GET["tag2"];
 $Tag3           = $_GET["tag3"];
 $Setting        = $_GET["setting"];
 $Characters     = $_GET["characters"];
-$YearMin        = $_GET["year"];
-$YearMax        = $YearMin + 10;
-$Emotion        = $_GET["emotion"];
+$YearMin        = $_GET["yearMin"];
+$YearMax        = $_GET["yearMax"];
 $Happiness      = $_GET["happiness"];
+$Interesting    = $_GET["interesting"];
 $Amusing        = $_GET["amusing"];
+$Featured       = $_GET["featured"];
 $MaxSphereValue = 5;
 
-  $query = "SELECT * 
-						FROM
-						videos
-						WHERE Tags LIKE '% ".$Tag1." %' 
-						UNION ALL
-						SELECT * 
-						FROM videos 
-						WHERE Tags LIKE '% ".$Tag2." %'
-						UNION ALL
-						SELECT * 
-						FROM videos 
-						WHERE Tags LIKE '% ".$Tag3." %'
-						UNION ALL
-						SELECT * 
-						FROM videos 
-						WHERE Setting = '$Setting'
-						UNION ALL
-						SELECT * 
-						FROM videos 
-						WHERE Characters = '$Characters'	
-						UNION ALL
-						SELECT * 
-						FROM videos 
-						WHERE Year >= '$YearMin' AND Year <'$YearMax' AND Year != ''									
-						";
+$query = "SELECT * 
+					FROM
+					videos
+					WHERE Tags LIKE '% ".$Tag1." %' 
+					UNION ALL
+					SELECT * 
+					FROM videos 
+					WHERE Tags LIKE '% ".$Tag2." %'
+					UNION ALL
+					SELECT * 
+					FROM videos 
+					WHERE Tags LIKE '% ".$Tag3." %'
+					UNION ALL
+					SELECT * 
+					FROM videos 
+					WHERE Setting = '$Setting'
+					UNION ALL
+					SELECT * 
+					FROM videos 
+					WHERE Characters = '$Characters'	
+					UNION ALL
+					SELECT * 
+					FROM videos 
+					WHERE Year >= '$YearMin' AND Year <'$YearMax' AND Year != ''
+					UNION ALL
+					SELECT * 
+					FROM videos 
+					WHERE Featured = '$Featured'								
+					";
+/*
 }else{
   $query = "SELECT * 
 						FROM
 						videos";
 }
+*/
 
 $results = mysqli_query($con,	$query);	
 									 
@@ -75,11 +84,11 @@ while($row = mysqli_fetch_array($results)){
 	
 	if($searchvariables){
 	
-  	$emotionScore = ($row['Emotion']-$Emotion);
-  	if ($emotionScore < 0){
-  		$emotionScore = abs($emotionScore);
+  	$interestingScore = ($row['Interesting']-$Interesting);
+  	if ($interestingScore < 0){
+  		$interestingScore = abs($interestingScore);
   	}
-  	$emotionScore = $MaxSphereValue- $emotionScore;
+  	$interestingScore = $MaxSphereValue- $interestingScore;
   	$happinessScore = ($row['Happiness']-$Happiness);
   	if ($happinessScore < 0){
   		$happinessScore = abs($happinessScore);
@@ -90,9 +99,8 @@ while($row = mysqli_fetch_array($results)){
   		$amusingScore = abs($amusingScore);
   	}
   	$amusingScore = $MaxSphereValue- $amusingScore;
-  	$totalScore = $emotionScore+$happinessScore+$amusingScore;
-  
-  }	
+  	$totalScore = $interestingScore+$happinessScore+$amusingScore;
+  }
 	
 	$row['resemblance'] = $totalScore;	
 	array_push($thisResult,$row);	

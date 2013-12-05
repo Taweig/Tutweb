@@ -21,6 +21,7 @@ var KofferStory = {
   stories: {
     init: function() {
       // JS here
+      initializeStories();
     }
   }
 };
@@ -98,13 +99,30 @@ String.prototype.repeat = function(num) {
 })(jQuery);
 /***************************
  ***************************
-  GET VIDEOS
+  Stories
  ***************************
  ***************************/
  
  
-function getVideos(){
+function getVideos(options){
 
+  var defaults = {
+    tag1          : '',
+    tag2          : '',
+    tag3          : '',
+    yearMin       : '',
+    yearMax       : '',
+    setting       : '',
+    characters    : '',
+    happiness     : '',
+    interesting   : '',
+    amusing       : '',
+    featured      : ''
+  };
+  
+  var searchParams = $.extend({}, defaults, options); 
+
+/*
 	var tag1 = document.getElementById('tag1').value;
 	var tag2 = document.getElementById('tag2').value;
 	var tag3 = document.getElementById('tag3').value;
@@ -114,6 +132,7 @@ function getVideos(){
 	var emotion = document.getElementById('slider1').value;
 	var happiness = document.getElementById('slider2').value;
 	var amusing = document.getElementById('slider3').value;
+*/
 	
 	
 	//vraag database naar alle resultaten die gelijk zijn aan tag1
@@ -123,6 +142,7 @@ function getVideos(){
   var request = $.ajax({
     url: 'php/getvideo.php',	
 		type : 'GET',
+		data: searchParams,
 		dataType: 'json',
 		success : function (data) {
       console.log(data);
@@ -340,28 +360,29 @@ function loadMapMarkers(){
 }
 /***************************
  ***************************
-  HOME
+  Stories
  ***************************
  ***************************/
+
+
+
+function initializeStories(){
+  loadStories();
+}
 
 function loadStories(){
   getVideos().done(function(data){  
     $(data.result).each(function(index){
-      var $item = $('<a data-rsw="1140" data-rsh="760">'+
-                      '<video id="tutvideo" data-audio-src="'+this.AudioSource+'" class="video-js vjs-default-skin"'+
-                        'controls preload="auto" width="100%" height="100%"'+
-                        'poster="'+this.Thumbnailsource+'"'+
-                        'data-setup="{example_option:true}">'+
-                       '<source src="'+this.Videosource+'" type="video/webm" />'+
-                      '</video>'+
-                      '<img class="rsTmb" src="'+this.Thumbnailsource+'">'+
-                    '</a>');
+      var $item = $('<div class="col-sm-6 col-md-4">'+
+                        '<div class="thumbnail" data-video-src="'+this.Videosource+'" data-audio-src="'+this.AudioSource+'">'+
+                          '<img src="'+this.Videosource+'" alt="" class="img-responsive">'+
+                          '<div class="caption">'+
+                            '<h4>'+this.Title+'</h4>'+
+                          '</div>'+
+                        '</div>'+
+                      '</div>');
           
       $('#storyContainer').append($item);
     });
   });
-}
-
-
-function initializeStories(){
 }
