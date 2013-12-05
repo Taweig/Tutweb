@@ -17,8 +17,11 @@
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
     <![endif]-->
+    <?php
+      if(isset($_GET["id"])) echo "<script>storyID = ".$_GET["id"].";</script>";
+    ?>
   </head>
-  <body class="stories">
+  <body class="story">
     <nav class="navbar navbar-default" role="navigation">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,8 +38,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
-            <li class="active"><a href="stories.html">Stories</a></li>
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="stories.html">Stories</a></li>
           </ul>
           <form class="navbar-form navbar-right" role="search">
             <div class="form-group">
@@ -48,79 +51,64 @@
       </div>
     </nav>
     <div class="container">
-      <div class="row">
-        <div class="col-sm-9">
-          <h3>Koffer Stories</h3>
-<!--
-          <div class="row" id="">
-            <div class="col-sm-12">
-              <div class="tagsinput tagsinput-primary">
-                <button type="button" class="btn btn-default" data-toggle="button">Single toggle</button>
+      <div class="row" id="story">
+        <div class="col-md-8">
+          <div id="video-holder"></div>
+        </div>
+        <div class="col-md-4">
+          <h3 class="title">Loading...</h3>
+          <p class="description"></p>
+          
+          <br/>
+          
+          <div class="meta meta-ratings">
+            <div class="row">
+              <div class="col-sm-2 col-md-4 col-lg-3">
+                Blij
+              </div>
+              <div class="col-sm-10 col-md-8 col-lg-9">
+                <div class="control-group">
+                  <div class="info-slider meta-happiness" class="ui-slider" data-value=""></div> 
+                </div>
+              </div>
+            </div><!-- .row -->
+            <div class="row">
+              <div class="col-sm-2 col-md-4 col-lg-3">
+                Informatief
+              </div>
+              <div class="col-sm-10 col-md-8 col-lg-9">
+                <div class="control-group">
+                  <div class="info-slider meta-informative" class="ui-slider" data-value=""></div> 
+                </div>
+              </div>
+            </div><!-- .row -->
+            <div class="row">
+              <div class="col-sm-2 col-md-4 col-lg-3">
+                Amusant
+              </div>
+              <div class="col-sm-10 col-md-8 col-lg-9">
+                <div class="control-group">
+                  <div class="info-slider meta-amusing" class="ui-slider" data-value=""></div> 
+                </div>
+              </div>
+            </div><!-- .row -->
+          </div><!-- .meta.meta-emotion -->
+          
+          <br/>
+          
+          <div class="meta">
+            <div class="row">
+              <div class="col-sm-12">
+                <strong>Tags</strong>
+                <div class="meta-tags">
+                </div>
               </div>
             </div>
           </div>
--->
-          <div class="row" id="storyContainer">
-          </div><!-- .row -->
-        </div><!-- .col-sm-9 -->
-        <div class="col-sm-3">
-          <h3>Zoek</h3>
-          <form class="" role="search">
-            <input type="text" class="form-control" placeholder="Search">
-            <button type="submit" class="btn btn-default sr-only">Submit</button>
-          </form>
-          
-          <form class="" role="search">
-              <p>Jaartal tussen</p>
-              <p>
-                <div class="row">
-                  <div class="col-sm-5">
-                    <input type="text" class="form-control">
-                  </div>
-                  <div class="col-sm-2">
-                    en
-                  </div>
-                  <div class="col-sm-5">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-              </p>
-                            
-              
-              <p>
-                Blij
-              </p>
-              <div class="control-group">
-                <input name="happy" class="inputNumber" hidden="hidden" value="3" />
-                <div class="input-slider" class="ui-slider"></div> 
-              </div>
-
-
-              <p>
-                Informatief
-              </p>
-              <div class="control-group">
-                <input name="informative" class="inputNumber" hidden="hidden" value="3" />
-                <div class="input-slider" class="ui-slider"></div> 
-              </div>
-
-
-              <p>
-                Amusant
-              </p>
-              <div class="control-group">
-                <input name="amusing" class="inputNumber" hidden="hidden" value="3" />
-                <div class="input-slider" class="ui-slider"></div> 
-              </div>
-
-              
-            <button type="submit" class="btn btn-primary btn-block">Zoek</button>
-          </form>
-
-
-        </div><!-- .col-sm-3 -->
-      </div><!-- .row -->
-    </div><!-- .container -->
+        </div>
+      </div>
+    </div>
+    <!-- /.container -->
 
 
     <!-- Load JS here for greater good =============================-->

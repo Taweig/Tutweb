@@ -13,15 +13,21 @@ var KofferStory = {
   home: {
     init: function() {
       // JS here
-      loadFeaturedSlider();
-      initializeMap();
+      initializeHome();
     }
   },
-  // About page
+  // Stories page
   stories: {
     init: function() {
       // JS here
       initializeStories();
+    }
+  },
+  // Story page
+  story: {
+    init: function() {
+      // JS here
+      initializeStory();
     }
   }
 };
@@ -80,9 +86,9 @@ String.prototype.repeat = function(num) {
     });
     $("select").selectpicker({style: 'btn-hg btn-primary', menuStyle: 'dropdown-inverse'});
     
-    var $slider = $(".slider");
-    if ($slider.length > 0) {
-      $slider.slider({
+    var $inputSlider = $(".input-slider");
+    if ($inputSlider.length > 0) {
+      $inputSlider.slider({
         min: 1,
         max: 5,
         value: 3,
@@ -93,7 +99,47 @@ String.prototype.repeat = function(num) {
         create: function(event, ui){
           $(this).slider('value',$(this).parent().find(".inputNumber").val());
         }
-      });//.addSliderSegments($slider.slider("option").max);
-    }
-        
+      });
+    }        
 })(jQuery);
+
+
+
+function initializeVideoJS(){  
+  videojs("tutvideo").ready(function(){
+    var video = this;
+  
+    console.log(video.contentEl());
+    
+    
+    var audio = document.createElement('audio');
+    audio.setAttribute("preload", "auto");
+    audio.autobuffer = true;
+    
+    var source1   = document.createElement('source');
+    source1.type  = 'audio/wav';
+    source1.src   = $(video.contentEl()).find("> video").data('audio-src');
+    audio.appendChild(source1);
+    audio.load();
+    audio.volume = 1;
+    
+    
+    video.on('volumechange', function(e){
+      audio.volume = video.volume();
+    });
+    video.on('play', function(e){
+      audio.play();
+    });
+    video.on('pause', function(e){
+      audio.pause();
+    });
+    video.on('ended', function(e){
+      audio.pause();
+    });
+    video.on('timeupdate', function(){
+      if(Math.ceil(audio.currentTime) != Math.ceil(video.currentTime())){
+        audio.currentTime = video.currentTime();
+      }
+    });
+  });
+}

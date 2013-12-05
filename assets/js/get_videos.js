@@ -7,6 +7,8 @@
  
 function getVideos(options){
 
+  var result = $.Deferred();
+
   var defaults = {
     tag1          : '',
     tag2          : '',
@@ -41,17 +43,69 @@ function getVideos(options){
 	
 	
   var request = $.ajax({
-    url: 'php/getvideo.php',	
+    url: 'php/getvideos.php',	
 		type : 'GET',
 		data: searchParams,
 		dataType: 'json',
 		success : function (data) {
-      console.log(data);
+      $(data.result).each(function(index){
+        data.result[index].images = this.Thumbnailsource.split(" , ");
+      });
+      result.resolve(data);
 		}	
 	});
 	request.fail(function( jqXHR, textStatus ) {
     alert( "Request failed: " + textStatus );
 	});
 	
-	return request;
+	return result;
 }
+
+
+function getVideo(ID){
+
+  var result = $.Deferred();
+  
+  var searchParams = {'ID':ID};
+	
+  var request = $.ajax({
+    url: 'php/getvideo.php',	
+		type : 'GET',
+		data: searchParams,
+		dataType: 'json',
+		success : function (data) {
+      $(data.result).each(function(index){
+        data.result[index].images = this.Thumbnailsource.split(" , ");
+        data.result[index].Tags = this.Tags.split(" , ");
+      });
+      result.resolve(data);
+		}	
+	});
+	request.fail(function( jqXHR, textStatus ) {
+    alert( "getVideo Request failed: " + textStatus );
+	});
+	
+	return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

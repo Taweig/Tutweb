@@ -4,6 +4,12 @@
  ***************************
  ***************************/
 
+function initializeHome(){
+  loadFeaturedSlider();
+  initializeMap();  
+}
+
+
 function loadFeaturedSlider(){
   console.log('loadFeaturedSlider');
   getVideos().done(function(data){  
@@ -11,11 +17,11 @@ function loadFeaturedSlider(){
       var $item = $('<a data-rsw="1140" data-rsh="760">'+
                       '<video id="tutvideo" data-audio-src="'+this.AudioSource+'" class="video-js vjs-default-skin"'+
                         'controls preload="auto" width="100%" height="100%"'+
-                        'poster="'+this.Thumbnailsource+'"'+
+                        'poster="'+this.images[1]+'"'+
                         'data-setup="{example_option:true}">'+
                        '<source src="'+this.Videosource+'" type="video/webm" />'+
                       '</video>'+
-                      '<img class="rsTmb" src="'+this.Thumbnailsource+'">'+
+                      '<img class="rsTmb" src="'+this.images[0]+'">'+
                     '</a>');
           
       $('#video-gallery').append($item);
@@ -64,42 +70,7 @@ function initializeFeaturedSlider(){
 
   });
   
-  videojs("tutvideo").ready(function(){
-    var video = this;
-  
-    console.log(video.contentEl());
-    
-    
-    var audio = document.createElement('audio');
-    audio.setAttribute("preload", "auto");
-    audio.autobuffer = true;
-    
-    var source1   = document.createElement('source');
-    source1.type  = 'audio/wav';
-    source1.src   = $(video.contentEl()).find("> video").data('audio-src');
-    audio.appendChild(source1);
-    audio.load();
-    audio.volume = 1;
-    
-    
-    video.on('volumechange', function(e){
-      audio.volume = video.volume();
-    });
-    video.on('play', function(e){
-      audio.play();
-    });
-    video.on('pause', function(e){
-      audio.pause();
-    });
-    video.on('ended', function(e){
-      audio.pause();
-    });
-    video.on('timeupdate', function(){
-      if(Math.ceil(audio.currentTime) != Math.ceil(video.currentTime())){
-        audio.currentTime = video.currentTime();
-      }
-    });
-  });
+  initializeVideoJS();
 }
 
 

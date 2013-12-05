@@ -1,0 +1,2 @@
+RewriteEngine On    # Turn on the rewriting engine
+RewriteRule    ^story/([0-9]+)/?$    story.php?id=$1    [NC,L]    # Handle product requests

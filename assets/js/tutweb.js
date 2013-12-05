@@ -13,15 +13,21 @@ var KofferStory = {
   home: {
     init: function() {
       // JS here
-      loadFeaturedSlider();
-      initializeMap();
+      initializeHome();
     }
   },
-  // About page
+  // Stories page
   stories: {
     init: function() {
       // JS here
       initializeStories();
+    }
+  },
+  // Story page
+  story: {
+    init: function() {
+      // JS here
+      initializeStory();
     }
   }
 };
@@ -80,9 +86,9 @@ String.prototype.repeat = function(num) {
     });
     $("select").selectpicker({style: 'btn-hg btn-primary', menuStyle: 'dropdown-inverse'});
     
-    var $slider = $(".slider");
-    if ($slider.length > 0) {
-      $slider.slider({
+    var $inputSlider = $(".input-slider");
+    if ($inputSlider.length > 0) {
+      $inputSlider.slider({
         min: 1,
         max: 5,
         value: 3,
@@ -93,10 +99,51 @@ String.prototype.repeat = function(num) {
         create: function(event, ui){
           $(this).slider('value',$(this).parent().find(".inputNumber").val());
         }
-      });//.addSliderSegments($slider.slider("option").max);
-    }
-        
+      });
+    }        
 })(jQuery);
+
+
+
+function initializeVideoJS(){  
+  videojs("tutvideo").ready(function(){
+    var video = this;
+  
+    console.log(video.contentEl());
+    
+    
+    var audio = document.createElement('audio');
+    audio.setAttribute("preload", "auto");
+    audio.autobuffer = true;
+    
+    var source1   = document.createElement('source');
+    source1.type  = 'audio/wav';
+    source1.src   = $(video.contentEl()).find("> video").data('audio-src');
+    audio.appendChild(source1);
+    audio.load();
+    audio.volume = 1;
+    
+    
+    video.on('volumechange', function(e){
+      audio.volume = video.volume();
+    });
+    video.on('play', function(e){
+      audio.play();
+    });
+    video.on('pause', function(e){
+      audio.pause();
+    });
+    video.on('ended', function(e){
+      audio.pause();
+    });
+    video.on('timeupdate', function(){
+      if(Math.ceil(audio.currentTime) != Math.ceil(video.currentTime())){
+        audio.currentTime = video.currentTime();
+      }
+    });
+  });
+}
+
 /***************************
  ***************************
   Stories
@@ -105,6 +152,8 @@ String.prototype.repeat = function(num) {
  
  
 function getVideos(options){
+
+  var result = $.Deferred();
 
   var defaults = {
     tag1          : '',
@@ -140,25 +189,84 @@ function getVideos(options){
 	
 	
   var request = $.ajax({
-    url: 'php/getvideo.php',	
+    url: 'php/getvideos.php',	
 		type : 'GET',
 		data: searchParams,
 		dataType: 'json',
 		success : function (data) {
-      console.log(data);
+      $(data.result).each(function(index){
+        data.result[index].images = this.Thumbnailsource.split(" , ");
+      });
+      result.resolve(data);
 		}	
 	});
 	request.fail(function( jqXHR, textStatus ) {
     alert( "Request failed: " + textStatus );
 	});
 	
-	return request;
+	return result;
 }
+
+
+function getVideo(ID){
+
+  var result = $.Deferred();
+  
+  var searchParams = {'ID':ID};
+	
+  var request = $.ajax({
+    url: 'php/getvideo.php',	
+		type : 'GET',
+		data: searchParams,
+		dataType: 'json',
+		success : function (data) {
+      $(data.result).each(function(index){
+        data.result[index].images = this.Thumbnailsource.split(" , ");
+        data.result[index].Tags = this.Tags.split(" , ");
+      });
+      result.resolve(data);
+		}	
+	});
+	request.fail(function( jqXHR, textStatus ) {
+    alert( "getVideo Request failed: " + textStatus );
+	});
+	
+	return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /***************************
  ***************************
   HOME
  ***************************
  ***************************/
+
+function initializeHome(){
+  loadFeaturedSlider();
+  initializeMap();  
+}
+
 
 function loadFeaturedSlider(){
   console.log('loadFeaturedSlider');
@@ -167,11 +275,11 @@ function loadFeaturedSlider(){
       var $item = $('<a data-rsw="1140" data-rsh="760">'+
                       '<video id="tutvideo" data-audio-src="'+this.AudioSource+'" class="video-js vjs-default-skin"'+
                         'controls preload="auto" width="100%" height="100%"'+
-                        'poster="'+this.Thumbnailsource+'"'+
+                        'poster="'+this.images[1]+'"'+
                         'data-setup="{example_option:true}">'+
                        '<source src="'+this.Videosource+'" type="video/webm" />'+
                       '</video>'+
-                      '<img class="rsTmb" src="'+this.Thumbnailsource+'">'+
+                      '<img class="rsTmb" src="'+this.images[0]+'">'+
                     '</a>');
           
       $('#video-gallery').append($item);
@@ -220,42 +328,7 @@ function initializeFeaturedSlider(){
 
   });
   
-  videojs("tutvideo").ready(function(){
-    var video = this;
-  
-    console.log(video.contentEl());
-    
-    
-    var audio = document.createElement('audio');
-    audio.setAttribute("preload", "auto");
-    audio.autobuffer = true;
-    
-    var source1   = document.createElement('source');
-    source1.type  = 'audio/wav';
-    source1.src   = $(video.contentEl()).find("> video").data('audio-src');
-    audio.appendChild(source1);
-    audio.load();
-    audio.volume = 1;
-    
-    
-    video.on('volumechange', function(e){
-      audio.volume = video.volume();
-    });
-    video.on('play', function(e){
-      audio.play();
-    });
-    video.on('pause', function(e){
-      audio.pause();
-    });
-    video.on('ended', function(e){
-      audio.pause();
-    });
-    video.on('timeupdate', function(){
-      if(Math.ceil(audio.currentTime) != Math.ceil(video.currentTime())){
-        audio.currentTime = video.currentTime();
-      }
-    });
-  });
+  initializeVideoJS();
 }
 
 
@@ -374,15 +447,72 @@ function loadStories(){
   getVideos().done(function(data){  
     $(data.result).each(function(index){
       var $item = $('<div class="col-sm-6 col-md-4">'+
-                        '<div class="thumbnail" data-video-src="'+this.Videosource+'" data-audio-src="'+this.AudioSource+'">'+
-                          '<img src="'+this.Videosource+'" alt="" class="img-responsive">'+
+                        '<div class="thumbnail" data-video-src="'+this.Videosource+'" data-audio-src="'+this.AudioSource+'"><a href="story.php?id='+this.ID+'">'+
+                          '<img src="'+this.images[0]+'" alt="">'+
                           '<div class="caption">'+
-                            '<h4>'+this.Title+'</h4>'+
+                            '<strong>'+this.Title+'</strong>'+
                           '</div>'+
-                        '</div>'+
+                        '</a></div>'+
                       '</div>');
           
       $('#storyContainer').append($item);
     });
+  });
+}
+/***************************
+ ***************************
+  Story
+ ***************************
+ ***************************/
+ 
+function initializeStory(){
+  loadStory(storyID);
+}
+
+
+function loadStory(ID){
+  console.log('loadStory');
+  getVideo(ID).done(function(data){
+    if(data.result[0]){
+      var story = data.result[0];
+      
+      $('#story h3.title').html(story.Title);
+      $('#story p.description').html(story.Description);
+      
+      var $video = $('<video id="tutvideo" data-audio-src="'+story.AudioSource+'" class="video-js vjs-default-skin"'+
+                        'controls preload="auto" width="100%" height="100%"'+
+                        'poster="'+story.images[1]+'"'+
+                        'data-setup="{example_option:true}">'+
+                       '<source src="'+story.Videosource+'" type="video/webm" />'+
+                      '</video>');
+      $('#video-holder').append($video);
+      initializeVideoJS();
+      
+
+      $('#story .meta-happiness').data('value', story.Happiness);
+      $('#story .meta-informative').data('value', story.Interesting);
+      $('#story .meta-amusing').data('value', story.Amusing);
+      
+      $(story.Tags).each(function(){
+        $('#story .meta-tags').append($('<a href="#" class="btn btn-primary">'+this+'</a> '));
+      });
+      
+      
+      var $infoSlider = $(".info-slider");
+      if ($infoSlider.length > 0) {
+        $infoSlider.slider({
+          min: 1,
+          max: 5,
+          range: 'min',
+          value: 0,
+          disabled: true,
+          orientation: "horizontal",
+          create: function(event, ui){
+            $(this).slider('value',$(this).data('value'));
+          }
+        });
+      }
+  
+    }
   });
 }

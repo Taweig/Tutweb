@@ -1,3 +1,6 @@
+// Demo Flat UI Pro
+
+
 // Loading config with variables (changing them leads to changing a color scheme)
 @import "variables";
 
@@ -7,6 +10,7 @@
 @import "royalslider/royalslider";
 @import "royalslider/rs-minimal-white";
 @import "video-js/video-js";
+@import "magnific-popup";
 
 //
 // Responsive: Landscape phone
@@ -58,9 +62,41 @@
     left: .1em;
     text-shadow: none;
   }
-
 }
-  
+
+#storyContainer{
+  .thumbnail{
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    .opacity(0.8);
+    img{
+      width: 100%;
+    }
+    .caption{
+      position:absolute;
+      bottom:0;
+      left:0; 
+      background-color: @gray;
+      font-size: 90%;
+      letter-spacing: .05em;
+      color: #FFF;
+      display: block;
+      width: 100%;
+    }
+    
+    &:hover, &.active{
+      .opacity(1);
+    }
+  }
+}
+
+
+.ui-state-disabled .ui-slider-handle{
+  display: none;
+}
+
   
 @media (min-width: @screen-sm-min) and (max-width: @screen-md-min){
   .form-container{
