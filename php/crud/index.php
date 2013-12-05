@@ -40,12 +40,12 @@ if(isset($_SESSION['CurrentUser'])){
 	</table>
    
  </div><!-- end container -->
-  <a href="http://localhost/Tutweb/php/admin_panel.php"> previous page</a>
+  <?php echo "<a href= '".site_url."/php/admin_panel.php'> previous page</a>" ?>
  </body>
 </html>
 <?php
 }else{
 	echo "you are not logged in<br>";
-	echo "click <a href=http://localhost/Tutweb/admin.html>here</a>	to go back";
+	//echo "click <a href='".site_url."/admin.html'>here</a>	to go back";
 }
 ?>
