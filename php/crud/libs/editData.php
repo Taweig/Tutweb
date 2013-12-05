@@ -17,7 +17,7 @@
 				echo $_FILES["file"]["name"] . " already exists. ";
 			}
 			else{
-			
+				//$dir = $_SERVER['HTTP_HOST']."/uploads/";
 				$dir = "../../uploads/";
 				move_uploaded_file($_FILES["file"]["tmp_name"],	$dir . $_FILES["file"]["name"]);
 				echo "Stored in: " . $dir . $_FILES["file"]["name"];
@@ -53,6 +53,9 @@
 				imagejpeg($posterimage_p, $postername);
 				imagejpeg($thumbnailimage_p, $thumbnailname);
 				unlink($filename);
+				//wont work on localhost because of the 'Tutweb' directory 
+				$postername =  $_SERVER['HTTP_HOST']."/uploads/".$currenttime.'_poster.jpg';
+				$thumbnailname =   $_SERVER['HTTP_HOST']."/uploads/".$currenttime.'_thumbnail.jpg';
 			}
 		}
 		
