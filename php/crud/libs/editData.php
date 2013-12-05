@@ -18,9 +18,9 @@
 			}
 			else{
 			
-				$dir = "testuploads/";
+				$dir = "../../uploads/";
 				move_uploaded_file($_FILES["file"]["tmp_name"],	$dir . $_FILES["file"]["name"]);
-				echo "Stored in: " . "testuploads/" . $_FILES["file"]["name"];
+				echo "Stored in: " . $dir . $_FILES["file"]["name"];
 				$filename = ($dir . $_FILES["file"]["name"]);
 				
 				$poster = $filename;

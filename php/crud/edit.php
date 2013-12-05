@@ -31,7 +31,7 @@
 							<input type="file" name="file" id="file"><br>';
 							if ($someData[$field_name] != null){
 							echo '<p>current image:</p><br>';
-							echo '<img src='.$someData[$field_name].' height=150 width = 150/>';	
+							echo '<img src='.$someData[$field_name].'/>';	
 							}
 					}
 					else
