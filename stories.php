@@ -20,53 +20,50 @@
         </div><!-- .col-sm-9 -->
         <div class="col-sm-3">
           <h3>Zoek</h3>
-          <form class="" role="search">
-            <input type="text" class="form-control" placeholder="Search">
-            <button type="submit" class="btn btn-default sr-only">Submit</button>
-          </form>
-          
-          <form class="" role="search">
-              <p>Jaartal tussen</p>
-              <p>
-                <div class="row">
-                  <div class="col-sm-5">
-                    <input type="text" class="form-control">
-                  </div>
-                  <div class="col-sm-2">
-                    en
-                  </div>
-                  <div class="col-sm-5">
-                    <input type="text" class="form-control">
-                  </div>
+          <form id="search-stories" role="search">
+            <input type="text" class="form-control" placeholder="Search" id="search">
+
+            <p>Jaartal tussen</p>
+            <p>
+              <div class="row">
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="yearMin" value="1800">
                 </div>
-              </p>
-                            
-              
-              <p>
-                Blij
-              </p>
-              <div class="control-group">
-                <input name="happy" class="inputNumber" hidden="hidden" value="3" />
-                <div class="input-slider" class="ui-slider"></div> 
+                <div class="col-sm-2">
+                  en
+                </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="yearMax" value="2013">
+                </div>
               </div>
+            </p>
+                          
+            
+            <p>
+              Blij
+            </p>
+            <div class="control-group">
+              <input id="happiness" class="inputNumber" hidden="hidden" value="3" />
+              <div class="input-slider" class="ui-slider"></div> 
+            </div>
 
 
-              <p>
-                Informatief
-              </p>
-              <div class="control-group">
-                <input name="informative" class="inputNumber" hidden="hidden" value="3" />
-                <div class="input-slider" class="ui-slider"></div> 
-              </div>
+            <p>
+              Informatief
+            </p>
+            <div class="control-group">
+              <input id="informative" class="inputNumber" hidden="hidden" value="3" />
+              <div class="input-slider" class="ui-slider"></div> 
+            </div>
 
 
-              <p>
-                Amusant
-              </p>
-              <div class="control-group">
-                <input name="amusing" class="inputNumber" hidden="hidden" value="3" />
-                <div class="input-slider" class="ui-slider"></div> 
-              </div>
+            <p>
+              Amusant
+            </p>
+            <div class="control-group">
+              <input id="amusing" class="inputNumber" hidden="hidden" value="3" />
+              <div class="input-slider" class="ui-slider"></div> 
+            </div>
 
               
             <button type="submit" class="btn btn-primary btn-block">Zoek</button>

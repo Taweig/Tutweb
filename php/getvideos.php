@@ -28,6 +28,7 @@ $Tag3           = $_GET["tag3"];
 $Setting        = $_GET["setting"];
 $Characters     = $_GET["characters"];
 */
+$Search         = $_GET["search"];
 $YearMin        = ($_GET["yearMin"] ? $_GET["yearMin"] : 0);
 $YearMax        = ($_GET["yearMax"] ? $_GET["yearMax"] : 9999);
 $Happiness      = $_GET["happiness"];
@@ -75,15 +76,21 @@ $query = "SELECT *
 						videos";
 }
 */
-
-if($Featured){
+if($Search){
   $query = "SELECT * 
   					FROM videos 
-  					WHERE Year >= '$YearMin' AND Year <'$YearMax' AND Year != '' AND Featured = '$Featured'";
+  					WHERE LOWER(Title) LIKE '%".strtolower($Search)."%'
+  					AND Year >= '$YearMin' AND Year <='$YearMax' AND Year != ''
+  					OR LOWER(Description) LIKE '%".strtolower($Search)."%'
+  					AND Year >= '$YearMin' AND Year <='$YearMax' AND Year != ''";
+}else if($Featured){
+  $query = "SELECT * 
+  					FROM videos 
+  					WHERE Year >= '$YearMin' AND Year <='$YearMax' AND Year != '' AND Featured = '$Featured'";
 }else{
   $query = "SELECT * 
   					FROM videos 
-  					WHERE Year >= '$YearMin' AND Year <'$YearMax' AND Year != ''";
+  					WHERE Year >= '$YearMin' AND Year <='$YearMax' AND Year != ''";
 }
 
 
@@ -92,36 +99,44 @@ $results = mysqli_query($con,	$query);
 
 
 $thisResult = array();
-
-while($row = mysqli_fetch_array($results)){
-	$boolean = true;
-	
-	$totalScore = 0;
-	
-	if($searchvariables){
-	
-  	$interestingScore = ($row['Interesting']-$Interesting);
-  	if ($interestingScore < 0){
-  		$interestingScore = abs($interestingScore);
-  	}
-  	$interestingScore = $MaxSphereValue- $interestingScore;
-  	$happinessScore = ($row['Happiness']-$Happiness);
-  	if ($happinessScore < 0){
-  		$happinessScore = abs($happinessScore);
-  	}
-  	$happinessScore = $MaxSphereValue- $happinessScore;
-  	$amusingScore = ($row['Amusing']-$Amusing);
-  	if ($amusingScore < 0){
-  		$amusingScore = abs($amusingScore);
-  	}
-  	$amusingScore = $MaxSphereValue- $amusingScore;
-  	$totalScore = $interestingScore+$happinessScore+$amusingScore;
+if($results){
+  while($row = mysqli_fetch_array($results)){
+  	$boolean = true;
+  	
+  	$totalScore = 0;
+  	
+  	if($searchvariables){
+  	
+    	$interestingScore = ($row['Interesting']-$Interesting);
+    	if ($interestingScore < 0){
+    		$interestingScore = abs($interestingScore);
+    	}
+    	$interestingScore = $MaxSphereValue- $interestingScore;
+    	$happinessScore = ($row['Happiness']-$Happiness);
+    	if ($happinessScore < 0){
+    		$happinessScore = abs($happinessScore);
+    	}
+    	$happinessScore = $MaxSphereValue- $happinessScore;
+    	$amusingScore = ($row['Amusing']-$Amusing);
+    	if ($amusingScore < 0){
+    		$amusingScore = abs($amusingScore);
+    	}
+    	$amusingScore = $MaxSphereValue- $amusingScore;
+    	$totalScore = $interestingScore+$happinessScore+$amusingScore;
+    }
+  	
+  	$row['resemblance'] = $totalScore;	
+  	array_push($thisResult,$row);	
+  	
   }
-	
-	$row['resemblance'] = $totalScore;	
-	array_push($thisResult,$row);	
-	
+  
+  function cmp($a, $b){
+    return strcmp($a["resemblance"], $b["resemblance"]);
+  }
+  usort($thisResult, "cmp");
 }
+
+
 
 
 $return = array(       

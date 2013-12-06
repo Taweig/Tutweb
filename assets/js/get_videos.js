@@ -10,6 +10,7 @@ function getVideos(options){
   var result = $.Deferred();
 
   var defaults = {
+    search        : '',
     tag1          : '',
     tag2          : '',
     tag3          : '',
