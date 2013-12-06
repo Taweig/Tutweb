@@ -43,7 +43,7 @@ function getVideos(options){
 	
 	
   var request = $.ajax({
-    url: 'php/getvideos.php',	
+    url: SITEURL+'/php/getvideos.php',	
 		type : 'GET',
 		data: searchParams,
 		dataType: 'json',
@@ -69,7 +69,7 @@ function getVideo(ID){
   var searchParams = {'ID':ID};
 	
   var request = $.ajax({
-    url: 'php/getvideo.php',	
+    url: SITEURL+'/php/getvideo.php',	
 		type : 'GET',
 		data: searchParams,
 		dataType: 'json',

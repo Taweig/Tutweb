@@ -4,7 +4,6 @@
 	$tables_init = new ManageDatabase;
 	
 	$listed_tables = $tables_init->listTables();
-	
 	foreach($listed_tables as $key => $value){
 		$given_tables[] = $value['Tables_in_'.DB_NAME];
 	}

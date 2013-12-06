@@ -10,7 +10,7 @@ var KofferStory = {
     finalize: function() { }
   },
   // Home page
-  home: {
+  index: {
     init: function() {
       // JS here
       initializeHome();

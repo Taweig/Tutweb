@@ -1,52 +1,7 @@
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Koffer Story</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Loading Bootstrap -->
-    <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Loading Flat UI -->
-    <link href="assets/css/flat-ui.css" rel="stylesheet">
-    <link href="assets/css/tutweb-theme.css" rel="stylesheet">  
-
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-    <![endif]-->
-  </head>
-  <body class="home">
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="Tuthut"></a>
-        </div>
-      
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="stories.html">Stories</a></li>
-          </ul>
-          <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default sr-only">Submit</button>
-          </form>
-        </div><!-- /.navbar-collapse -->
-      </div>
-    </nav>
+<?php
+  $file = explode(".",basename (__FILE__))[0];
+  require_once('inc/header.php');
+?>
     <div class="container">
 
       <div class="row">
@@ -88,7 +43,7 @@
               <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. <strong>Donec ullamcorper</strong> nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
             </div>
             <div class="col-md-5">
-              <img src="assets/images/description-image.jpg" class="img-rounded img-responsive" />
+              <img src="<?=$site_url?>/assets/images/description-image.jpg" class="img-rounded img-responsive" />
               <p class="img-comment"><strong>Note:</strong> gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
             </div>
             
@@ -172,16 +127,6 @@
 
     </div>
     <!-- /.container -->
-
-
-    <!-- Load JS here for greater good =============================-->
-    <script src="assets/js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="assets/js/tutweb.plugins.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap-select.js"></script>
-    <script src="assets/bootstrap/js/bootstrap-switch.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble-compiled.js"></script>
-    <script src="assets/js/tutweb.js"></script>
-  </body>
-</html>
+<?php
+  require_once('inc/footer.php');
+?>

@@ -21,19 +21,22 @@ if(
 
 $searchvariables = true;
 
+/*
 $Tag1           = $_GET["tag1"];
 $Tag2           = $_GET["tag2"];
 $Tag3           = $_GET["tag3"];
 $Setting        = $_GET["setting"];
 $Characters     = $_GET["characters"];
-$YearMin        = $_GET["yearMin"];
-$YearMax        = $_GET["yearMax"];
+*/
+$YearMin        = ($_GET["yearMin"] ? $_GET["yearMin"] : 0);
+$YearMax        = ($_GET["yearMax"] ? $_GET["yearMax"] : 9999);
 $Happiness      = $_GET["happiness"];
 $Interesting    = $_GET["interesting"];
 $Amusing        = $_GET["amusing"];
 $Featured       = $_GET["featured"];
 $MaxSphereValue = 5;
 
+/*
 $query = "SELECT * 
 					FROM
 					videos
@@ -63,6 +66,8 @@ $query = "SELECT *
 					FROM videos 
 					WHERE Featured = '$Featured'								
 					";
+
+*/
 /*
 }else{
   $query = "SELECT * 
@@ -70,6 +75,17 @@ $query = "SELECT *
 						videos";
 }
 */
+
+if($Featured){
+  $query = "SELECT * 
+  					FROM videos 
+  					WHERE Year >= '$YearMin' AND Year <'$YearMax' AND Year != '' AND Featured = '$Featured'";
+}else{
+  $query = "SELECT * 
+  					FROM videos 
+  					WHERE Year >= '$YearMin' AND Year <'$YearMax' AND Year != ''";
+}
+
 
 $results = mysqli_query($con,	$query);	
 									 
