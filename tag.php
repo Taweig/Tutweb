@@ -1,5 +1,6 @@
 <?php
-  $file = explode(".",basename (__FILE__))[0];
+  $file = explode(".",basename (__FILE__));
+  $file = $file[0];
   require_once('inc/header.php');
 
   $tag = (isset($_GET['tag']) ? $_GET['tag'] : '');
