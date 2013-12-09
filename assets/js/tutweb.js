@@ -29,6 +29,13 @@ var KofferStory = {
       // JS here
       initializeStory();
     }
+  },
+  // Tag page
+  tag: {
+    init: function() {
+      // JS here
+      initializeTag();
+    }
   }
 };
 
@@ -92,6 +99,7 @@ String.prototype.repeat = function(num) {
         min: 1,
         max: 5,
         value: 3,
+        range: 'min',
         orientation: "horizontal",
         slide: function (event, ui) {
           $(this).parent().find(".inputNumber").val(ui.value);
@@ -157,9 +165,7 @@ function getVideos(options){
 
   var defaults = {
     search        : '',
-    tag1          : '',
-    tag2          : '',
-    tag3          : '',
+    tag           : '',
     yearMin       : '',
     yearMax       : '',
     setting       : '',
@@ -477,22 +483,26 @@ function initializeStories(){
 }
 
 function loadStories(){
-  getVideos().done(function(data){  
-    $(data.result).each(function(index){
-      var $item = $('<div class="col-sm-6 col-md-4">'+
-                        '<div class="thumbnail" data-video-src="'+this.Videosource+'" data-audio-src="'+this.AudioSource+'"><a href="story.php?id='+this.ID+'">'+
-                          '<img src="'+this.images[0]+'" alt="">'+
-                          '<div class="caption">'+
-                            '<strong>'+this.Title+'</strong>'+
-                          '</div>'+
-                        '</a></div>'+
-                      '</div>');
-          
-      $('#storyContainer').append($item);
-    });
+  getVideos().done(function(data){
+    showStories($('#storyContainer'),data.result);
   });
 }
 
+
+function showStories($target,stories){
+  $(stories).each(function(index){
+    var $item = $('<div class="col-sm-6 col-md-4">'+
+                      '<div class="thumbnail" data-video-src="'+this.Videosource+'" data-audio-src="'+this.AudioSource+'"><a href="story.php?id='+this.ID+'">'+
+                        '<img src="'+this.images[0]+'" alt="">'+
+                        '<div class="caption">'+
+                          '<strong>'+this.Title+'</strong>'+
+                        '</div>'+
+                      '</a></div>'+
+                    '</div>');
+        
+    $target.append($item);
+  });
+}
 
 function searchStories(){
   
@@ -532,7 +542,7 @@ function loadStory(ID){
       $('#story .meta-amusing').data('value', story.Amusing);
       
       $(story.Tags).each(function(){
-        $('#story .meta-tags').append($('<a href="#" class="btn btn-primary">'+this+'</a> '));
+        $('#story .meta-tags').append($('<span><a href="'+SITEURL+'/tag.php?tag='+this+'" class="btn btn-primary">'+this+'</a> </span>'));
       });
       
       
@@ -552,5 +562,22 @@ function loadStory(ID){
       }
   
     }
+  });
+}
+/***************************
+ ***************************
+  Tag
+ ***************************
+ ***************************/
+ 
+function initializeTag(){
+  loadStoriesByTag();
+}
+
+
+function loadStoriesByTag(){
+  console.log('Yo Mama');
+  getVideos({tag:TAG}).done(function(data){
+    showStories($('#storyContainer'),data.result);
   });
 }

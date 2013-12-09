@@ -11,9 +11,7 @@ function getVideos(options){
 
   var defaults = {
     search        : '',
-    tag1          : '',
-    tag2          : '',
-    tag3          : '',
+    tag           : '',
     yearMin       : '',
     yearMax       : '',
     setting       : '',

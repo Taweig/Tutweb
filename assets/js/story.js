@@ -33,7 +33,7 @@ function loadStory(ID){
       $('#story .meta-amusing').data('value', story.Amusing);
       
       $(story.Tags).each(function(){
-        $('#story .meta-tags').append($('<a href="#" class="btn btn-primary">'+this+'</a> '));
+        $('#story .meta-tags').append($('<span><a href="'+SITEURL+'/tag.php?tag='+this+'" class="btn btn-primary">'+this+'</a> </span>'));
       });
       
       

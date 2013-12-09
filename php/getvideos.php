@@ -22,12 +22,12 @@ if(
 $searchvariables = true;
 
 /*
-$Tag1           = $_GET["tag1"];
 $Tag2           = $_GET["tag2"];
 $Tag3           = $_GET["tag3"];
 $Setting        = $_GET["setting"];
 $Characters     = $_GET["characters"];
 */
+$Tag            = $_GET["tag"];
 $Search         = $_GET["search"];
 $YearMin        = ($_GET["yearMin"] ? $_GET["yearMin"] : 0);
 $YearMax        = ($_GET["yearMax"] ? $_GET["yearMax"] : 9999);
@@ -36,6 +36,7 @@ $Interesting    = $_GET["interesting"];
 $Amusing        = $_GET["amusing"];
 $Featured       = $_GET["featured"];
 $MaxSphereValue = 5;
+
 
 /*
 $query = "SELECT * 
@@ -76,7 +77,11 @@ $query = "SELECT *
 						videos";
 }
 */
-if($Search){
+if($Tag){
+  $query = "SELECT * 
+  					FROM videos 
+  					WHERE LOWER(tags) LIKE '%".strtolower($Tag)."%'";
+}else if($Search){
   $query = "SELECT * 
   					FROM videos 
   					WHERE LOWER(Title) LIKE '%".strtolower($Search)."%'

@@ -29,6 +29,13 @@ var KofferStory = {
       // JS here
       initializeStory();
     }
+  },
+  // Tag page
+  tag: {
+    init: function() {
+      // JS here
+      initializeTag();
+    }
   }
 };
 
@@ -92,6 +99,7 @@ String.prototype.repeat = function(num) {
         min: 1,
         max: 5,
         value: 3,
+        range: 'min',
         orientation: "horizontal",
         slide: function (event, ui) {
           $(this).parent().find(".inputNumber").val(ui.value);
