@@ -374,7 +374,8 @@ function initializeMap() {
   var mapOptions = {
     zoom: 7,
     center: myLatlng,
-    styles: styles
+    styles: styles,
+    scrollwheel: false
   };
   map = new google.maps.Map(document.getElementById('tuthutMap'), mapOptions);      
   
