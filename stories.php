@@ -6,15 +6,6 @@
       <div class="row">
         <div class="col-sm-9">
           <h3>Koffer Stories</h3>
-<!--
-          <div class="row" id="">
-            <div class="col-sm-12">
-              <div class="tagsinput tagsinput-primary">
-                <button type="button" class="btn btn-default" data-toggle="button">Single toggle</button>
-              </div>
-            </div>
-          </div>
--->
           <div class="row" id="storyContainer">
           </div><!-- .row -->
         </div><!-- .col-sm-9 -->

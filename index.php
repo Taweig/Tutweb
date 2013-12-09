@@ -9,7 +9,7 @@
           <div id="video-gallery" class="royalSlider videoGallery rsDefault">
           </div>
         </div>
-      </div>
+      </div><!-- .row -->
 
       <div class="row locations">
         <div class="col-md-4">
@@ -31,7 +31,7 @@
         <div class="col-md-8 tuthut-map">
           <div id="tuthutMap"></div>
         </div>
-      </div>
+      </div><!-- .row.locations -->
       
       
       <div class="row">
@@ -49,84 +49,8 @@
             
           </div>
         </div>
-      </div>
-
-
-<!--
-
-      <video id='videoplayer' width="320" height="240">
-        <source src="movie.mp4" type="video/mp4">
-        <source src="movie.ogg" type="video/ogg">Your browser does not support the video tag.
-      </video>
-      
-      <audio id='audioplayer'>
-        <source src="horse.ogg" type="audio/ogg">
-        <source src="horse.mp3" type="audio/mpeg">Your browser does not support the audio element.
-      </audio>
--->
-      
-      <br>
-<!--
-      <img id='orangebar' src='img/orangebar.jpg' width="10" height="20" onclick='stopVideo()'><br>
-      <img src='img/play.png' width="50" height="50" onclick='startVideo()'> 
-      <img src='img/pause.png' width="50" height="50" onclick='stopVideo()'><br>
--->
-      
-      <form>
-        Tag1: <input id='tag1' type="text" name="tag1" value='notimeline'><br>
-        Tag2: <input id='tag2' type="text" name="tag2" value='nopictures'><br>
-        Tag3: <input id='tag3' type="text" name="tag3" value='conversation'><br>
-        
-        In welk jaar speelt het verhaal zich af?
-        <select id='YearTag'>
-          <option value="">leave Empty</option>  
-          <option value="1920">1920-1930</option>  
-          <option value="1931">1931-1940</option>  
-          <option value="1941">1941-1950</option>  
-          <option value="1951">1951-1960</option>  
-          <option value="1961">1961-1970</option>  
-          <option value="1971">1971-1980</option>  
-          <option value="1981">1981-1990</option>  
-          <option value="1991">1991-2000</option>  
-          <option value="2001">2001-2010</option>
-        </select>
-        <br>
-        
-        Waar speelt het verhaal zich af? 
-        <select id='SettingTag'>
-          <option value="">leave Empty</option>  
-          <option value="Thuis">Thuis</option>
-          <option value="Onderweg">Onderweg</option>
-          <option value="Buiten">Buiten</option>  
-          <option value="Natuur">In de natuur</option>  
-          <option value="School">Op school</option>
-        </select>
-        <br>
-        
-        Wie zijn de hoofdrolspelers in het verhaal?
-        <select id='CharacterTag'>
-          <option value="">leave Empty</option>  
-          <option value="Familie">Familie</option>  
-          <option value="Vrienden">Vrienden</option>  
-          <option value="Collega">Collega's</option>  
-          <option value="Medestudenten">Medestudenten</option>  
-          <option value="Onbekenden">Onbekenden</option>
-        </select>
-        <br>
-        
-        Blij <input type="range" value="3" id="slider1" min="1" max="5"> Verdrietig<br>
-        Gelukkig <input type="range" value="3" id="slider2" min="1" max="5"> Ongelukkig<br>
-        Vermakelijk <input type="range" value="3" id="slider3" min="1" max="5"> Interesant<br>
-        
-        <input type="submit" onclick="applyTags()">
-        <br>
-        <br>
-      </form>
-  
-      <div id="thumbnails"></div>
-
-    </div>
-    <!-- /.container -->
+      </div><!-- .row -->
+    </div><!-- .container -->
 <?php
   require_once('inc/footer.php');
 ?>
