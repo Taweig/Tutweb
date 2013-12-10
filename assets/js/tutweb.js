@@ -547,7 +547,7 @@ function loadStory(ID){
       console.log(story);
       
       $('.video-details .title').html(story.title);
-      $('.video-details .date').html(story.savedate.toString('dd, MM ,yyyy'));
+      $('.video-details .date').html(story.savedate.getDate()+"-"+(story.savedate.getMonth()+1)+"-"+story.savedate.getFullYear());
       $('.video-details .description').html(story.description);
       
       var $video = $('<video id="tutvideo" data-audio-src="'+story.audiosource+'" class="video-js vjs-default-skin"'+
@@ -559,7 +559,7 @@ function loadStory(ID){
       $('#video-holder').append($video);
       initializeVideoJS();
 
-      $('.video-details .name-age').html(story.name +" "+ calcAge(story.dob));
+      $('.video-details .name-age').html(story.name +" ("+ calcAge(story.dob)+")");
 
       $('.video-details .year').html(story.year);
       $('.video-details .object').html(story.object);

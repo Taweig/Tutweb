@@ -12,6 +12,7 @@
         </div><!-- .col-sm-9 -->
         <div class="col-sm-3">
           <?php require_once("inc/search-form.php"); ?>
+        </div><!-- .col-sm-3 -->
       </div><!-- .row -->
     </div><!-- .container -->
 <?php
