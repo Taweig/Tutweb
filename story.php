@@ -11,57 +11,62 @@
         <div class="col-md-8">
           <div id="video-holder"></div>
         </div>
-        <div class="col-md-4">
-          <h3 class="title">Loading...</h3>
+        <aside class="col-md-4 video-details">
+          <h1 class="title">Loading...</h1>
+          <small class="date">-</small>
           <p class="description"></p>
           
           <br/>
           
+          <h5>Verteller</h5>
+          <p class="name-age">-</p>
+          
+          <h5>Setting</h5>
+          <table class="setting-details">
+            <tr>
+              <td>Jaar</td>
+              <td class="year">-</td>
+            </tr>
+            <tr>
+              <td>Object</td>
+              <td class="object">-</td>
+            </tr>
+            <tr>
+              <td>Lokatie</td>
+              <td class="location">-</td>
+            </tr>
+            <tr>
+              <td>Hoofdrolspelers</td>
+              <td class="cast">-</td>
+            </tr>
+          </table>
+          
+          <br/>
+          
           <div class="meta meta-ratings">
-            <div class="row">
-              <div class="col-sm-2 col-md-4 col-lg-3">
-                Blij
-              </div>
-              <div class="col-sm-10 col-md-8 col-lg-9">
-                <div class="control-group">
-                  <div class="info-slider meta-happiness" class="ui-slider" data-value=""></div> 
-                </div>
-              </div>
-            </div><!-- .row -->
-            <div class="row">
-              <div class="col-sm-2 col-md-4 col-lg-3">
-                Informatief
-              </div>
-              <div class="col-sm-10 col-md-8 col-lg-9">
-                <div class="control-group">
-                  <div class="info-slider meta-informative" class="ui-slider" data-value=""></div> 
-                </div>
-              </div>
-            </div><!-- .row -->
-            <div class="row">
-              <div class="col-sm-2 col-md-4 col-lg-3">
-                Amusant
-              </div>
-              <div class="col-sm-10 col-md-8 col-lg-9">
-                <div class="control-group">
-                  <div class="info-slider meta-amusing" class="ui-slider" data-value=""></div> 
-                </div>
-              </div>
-            </div><!-- .row -->
+          
+            <div class="control-group">
+              <p>Blij</p>
+              <div class="info-slider meta-category1" class="ui-slider"></div> 
+            </div>
+
+            <div class="control-group">
+              <p>Historische relevantie</p>
+              <div class="info-slider meta-category2" class="ui-slider"></div> 
+            </div>
+
+            <div class="control-group">
+              <p>Vermakelijk</p>
+              <div class="info-slider meta-category3" class="ui-slider"></div> 
+            </div>
           </div><!-- .meta.meta-emotion -->
           
           <br/>
           
-          <div class="meta">
-            <div class="row">
-              <div class="col-sm-12">
-                <strong>Tags</strong>
-                <div class="meta-tags">
-                </div>
-              </div>
-            </div>
+          <h5>Tags</h5>
+          <div class="meta-tags">
           </div>
-        </div>
+        </aside>
       </div>
     </div>
     <!-- /.container -->

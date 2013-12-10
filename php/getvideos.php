@@ -3,7 +3,6 @@ require_once "connect.php";
 //http://localhost/php/getvideo.php?tag1=notimeline&tag2=nopictures&tag3=conversation
 //http://localhost/php/getvideo.php?tag1=notimeline&tag2=nopictures&tag3=conversation&setting=Thuis&characters=Vrienden&year=1991-2000&emotion=3&happiness=3&amusing=3
 $con=mysqli_connect($db_host,$db_user,$db_pass,$db_name);
-$searchvariables = false;
 
 /*
 if(
@@ -19,22 +18,20 @@ if(
   ){
 */
 
-$searchvariables = true;
-
 /*
-$Tag2           = $_GET["tag2"];
-$Tag3           = $_GET["tag3"];
+$tag2           = $_GET["tag2"];
+$tag3           = $_GET["tag3"];
 $Setting        = $_GET["setting"];
 $Characters     = $_GET["characters"];
 */
-$Tag            = $_GET["tag"];
-$Search         = $_GET["search"];
-$YearMin        = ($_GET["yearMin"] ? $_GET["yearMin"] : 0);
-$YearMax        = ($_GET["yearMax"] ? $_GET["yearMax"] : 9999);
-$Happiness      = $_GET["happiness"];
-$Interesting    = $_GET["interesting"];
-$Amusing        = $_GET["amusing"];
-$Featured       = $_GET["featured"];
+$tag            = $_GET["tag"];
+$search         = $_GET["search"];
+$yearMin        = ($_GET["yearMin"] ? $_GET["yearMin"] : 0);
+$yearMax        = ($_GET["yearMax"] ? $_GET["yearMax"] : 9999);
+$category1      = $_GET["category1"];
+$category2      = $_GET["category2"];
+$category3      = $_GET["category3"];
+$featured       = $_GET["featured"];
 $MaxSphereValue = 5;
 
 
@@ -42,15 +39,15 @@ $MaxSphereValue = 5;
 $query = "SELECT * 
 					FROM
 					videos
-					WHERE Tags LIKE '% ".$Tag1." %' 
+					WHERE tags LIKE '% ".$tag1." %' 
 					UNION ALL
 					SELECT * 
 					FROM videos 
-					WHERE Tags LIKE '% ".$Tag2." %'
+					WHERE tags LIKE '% ".$tag2." %'
 					UNION ALL
 					SELECT * 
 					FROM videos 
-					WHERE Tags LIKE '% ".$Tag3." %'
+					WHERE tags LIKE '% ".$tag3." %'
 					UNION ALL
 					SELECT * 
 					FROM videos 
@@ -62,11 +59,11 @@ $query = "SELECT *
 					UNION ALL
 					SELECT * 
 					FROM videos 
-					WHERE Year >= '$YearMin' AND Year <'$YearMax' AND Year != ''
+					WHERE year >= '$yearMin' AND year <'$yearMax' AND year != ''
 					UNION ALL
 					SELECT * 
 					FROM videos 
-					WHERE Featured = '$Featured'								
+					WHERE featured = '$featured'								
 					";
 
 */
@@ -77,25 +74,25 @@ $query = "SELECT *
 						videos";
 }
 */
-if($Tag){
+if($tag){
   $query = "SELECT * 
   					FROM videos 
-  					WHERE LOWER(tags) LIKE '%".strtolower($Tag)."%'";
-}else if($Search){
+  					WHERE LOWER(tags) LIKE '%".strtolower($tag)."%'";
+}else if($search){
   $query = "SELECT * 
   					FROM videos 
-  					WHERE LOWER(Title) LIKE '%".strtolower($Search)."%'
-  					AND Year >= '$YearMin' AND Year <='$YearMax' AND Year != ''
-  					OR LOWER(Description) LIKE '%".strtolower($Search)."%'
-  					AND Year >= '$YearMin' AND Year <='$YearMax' AND Year != ''";
-}else if($Featured){
+  					WHERE LOWER(title) LIKE '%".strtolower($search)."%'
+  					AND year >= '$yearMin' AND year <='$yearMax' AND year != ''
+  					OR LOWER(description) LIKE '%".strtolower($search)."%'
+  					AND year >= '$yearMin' AND year <='$yearMax' AND year != ''";
+}else if($featured){
   $query = "SELECT * 
   					FROM videos 
-  					WHERE Year >= '$YearMin' AND Year <='$YearMax' AND Year != '' AND Featured = '$Featured'";
+  					WHERE year >= '$yearMin' AND year <='$yearMax' AND year != '' AND featured = '$featured'";
 }else{
   $query = "SELECT * 
   					FROM videos 
-  					WHERE Year >= '$YearMin' AND Year <='$YearMax' AND Year != ''";
+  					WHERE year >= '$yearMin' AND year <='$yearMax' AND year != ''";
 }
 
 
@@ -106,29 +103,11 @@ $results = mysqli_query($con,	$query);
 $thisResult = array();
 if($results){
   while($row = mysqli_fetch_array($results)){
-  	$boolean = true;
   	
   	$totalScore = 0;
-  	
-  	if($searchvariables){
-  	
-    	$interestingScore = ($row['Interesting']-$Interesting);
-    	if ($interestingScore < 0){
-    		$interestingScore = abs($interestingScore);
-    	}
-    	$interestingScore = $MaxSphereValue- $interestingScore;
-    	$happinessScore = ($row['Happiness']-$Happiness);
-    	if ($happinessScore < 0){
-    		$happinessScore = abs($happinessScore);
-    	}
-    	$happinessScore = $MaxSphereValue- $happinessScore;
-    	$amusingScore = ($row['Amusing']-$Amusing);
-    	if ($amusingScore < 0){
-    		$amusingScore = abs($amusingScore);
-    	}
-    	$amusingScore = $MaxSphereValue- $amusingScore;
-    	$totalScore = $interestingScore+$happinessScore+$amusingScore;
-    }
+  	$totalScore .= max(($row['category1']-$category1),0);
+  	$totalScore .= max(($row['category2']-$category2),0);
+  	$totalScore .= max(($row['category3']-$category3),0);
   	
   	$row['resemblance'] = $totalScore;	
   	array_push($thisResult,$row);	
@@ -138,6 +117,7 @@ if($results){
   function cmp($a, $b){
     return strcmp($a["resemblance"], $b["resemblance"]);
   }
+  
   usort($thisResult, "cmp");
 }
 

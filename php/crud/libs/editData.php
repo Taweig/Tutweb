@@ -68,7 +68,7 @@
 		include_once( 'session.php' );
 		
 		$param = $_POST;
-		$param['Thumbnailsource'] =$thumbnailname." , ".$postername;//eerst klein dan groot
+		$param['images'] =$thumbnailname." , ".$postername;//eerst klein dan groot
 		include_once( 'class.ManageDatabase.php' );
 		$init = new ManageDatabase;
 		$id = $_GET['id'];

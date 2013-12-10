@@ -26,8 +26,8 @@
 						<p class="help-block">'.$value['Type'].'</p>
 						';
 					}
-					elseif($field_name == 'Thumbnailsource' ){					
-							echo '<label for="Thumbnailsource">Filename:</label>
+					elseif($field_name == 'images' ){					
+							echo '<label for="images">Filename:</label>
 							<input type="file" name="file" id="file"><br>';
 							if ($someData[$field_name] != null){
 							echo '<p>current image:</p><br>';

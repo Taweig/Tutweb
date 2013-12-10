@@ -19,7 +19,7 @@ function loadFeaturedSlider(){
                         'controls preload="auto" width="100%" height="100%"'+
                         'poster="'+this.images[1]+'"'+
                         'data-setup="{example_option:true}">'+
-                       '<source src="'+this.Videosource+'" type="video/webm" />'+
+                       '<source src="'+this.videosource+'" type="video/webm" />'+
                       '</video>'+
                       '<img class="rsTmb" src="'+this.images[0]+'">'+
                     '</a>');

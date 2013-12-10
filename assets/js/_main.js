@@ -67,6 +67,14 @@ String.prototype.repeat = function(num) {
   return new Array(num + 1).join(this);
 };
 
+
+function calcAge(dateString) {
+  var birthday = +new Date(dateString);
+  return ~~((Date.now() - birthday) / (31557600000));
+}
+
+
+
 (function($) {
 
     // jQuery UI Spinner

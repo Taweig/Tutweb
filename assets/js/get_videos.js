@@ -14,11 +14,9 @@ function getVideos(options){
     tag           : '',
     yearMin       : '',
     yearMax       : '',
-    setting       : '',
-    characters    : '',
-    happiness     : '',
-    interesting   : '',
-    amusing       : '',
+    category1     : '',
+    category2     : '',
+    category3     : '',
     featured      : ''
   };
   
@@ -48,7 +46,7 @@ function getVideos(options){
 		dataType: 'json',
 		success : function (data) {
       $(data.result).each(function(index){
-        data.result[index].images = this.Thumbnailsource.split(" , ");
+        data.result[index] = parseVideo(this);
       });
       result.resolve(data);
 		}	
@@ -74,8 +72,7 @@ function getVideo(ID){
 		dataType: 'json',
 		success : function (data) {
       $(data.result).each(function(index){
-        data.result[index].images = this.Thumbnailsource.split(" , ");
-        data.result[index].Tags = this.Tags.split(" , ");
+        data.result[index] = parseVideo(this);
       });
       result.resolve(data);
 		}	
@@ -88,6 +85,15 @@ function getVideo(ID){
 }
 
 
+
+function parseVideo(video){
+  video.images      = video.images.split(" , ");
+  video.tags        = video.tags.split(", ");
+  video.dob         = new Date(video.dob);
+  video.savedate    = new Date(video.savedate);
+  
+  return video;
+}
 
 
 

@@ -12,41 +12,43 @@
 @import "video-js/video-js";
 @import "magnific-popup";
 
+
+h5{
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+
+
 //
 // Responsive: Landscape phone
-// --------------------------------------------------
-  #header {
-    padding: 10% 0 5%;;
-  }
-  
-  .locations{
-    margin-bottom: 100px;
-    .col-md-4, .col-md-8{
-      > div{
-        border: 2px solid #b0b0b0;
-        background-clip: padding-box;
-        overflow: auto;
-        height: 400px;      
-      }
-    }
-    .col-md-4 > div{
-      border-radius: 5px 0 0 5px;
-      border-right: 0;
-      margin-right: -15px;
-      border-right: 2px solid #b0b0b0;
-      .table{
-        margin-bottom: 0;
-      }
-    }
-    .col-md-8 > div{
-      border-radius: 0 5px 5px 0;
-      border-left: 0;
-      margin-left: -15px;
+// --------------------------------------------------  
+.locations{
+  margin-bottom: 100px;
+  .col-md-4, .col-md-8{
+    > div{
+      border: 2px solid #b0b0b0;
+      background-clip: padding-box;
+      overflow: auto;
+      height: 400px;      
     }
   }
-  .tuthut-map{
+  .col-md-4 > div{
+    border-radius: 5px 0 0 5px;
+    border-right: 0;
+    margin-right: -15px;
+    border-right: 2px solid #b0b0b0;
+    .table{
+      margin-bottom: 0;
+    }
   }
-  
+  .col-md-8 > div{
+    border-radius: 0 5px 5px 0;
+    border-left: 0;
+    margin-left: -15px;
+  }
+}
+
   
 .vjs-default-skin .vjs-big-play-button{
   width: 3em;
@@ -96,37 +98,61 @@
 .ui-state-disabled .ui-slider-handle{
   display: none;
 }
-
-  
-@media (min-width: @screen-sm-min) and (max-width: @screen-md-min){
-  .form-container{
-    .container{
-      width: 900px;
-    }
-  }
+.ui-slider-range {
+  border-radius: 30px;
 }
-@media (min-width: @screen-sm-min) {
-  .form-container{
-    position:absolute;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 10%;
-    form{
-      padding: 25% 0 0;
-      width: 400%;
-      .panel{
-        width: 14.2857%;
-        padding: 0 2%;
-        float: left;
-        border-bottom: 0;
-        .box-shadow(none);
+
+
+#video-holder{
+  height: 200px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+
+.video-details{
+  h1{
+    font-size: 40px;
+    margin-bottom: 0;
+  }
+  table.setting-details{
+    td:first-child{
+      padding-right: 10px;
+      font-weight: bold;
+      &:after{
+        content: ":";
+        display: inline-block;
       }
     }
   }
+  
+}
+
+
+.meta-ratings{
+  .control-group{
+    p{
+      margin-bottom: 0;
+    }
+  }
+}
+  
+@media (min-width: @screen-xs-min){
+  #video-holder{
+    height: 300px;
+    margin-top: @grid-gutter-width;
+  }
+}
+
+@media (min-width: @screen-sm-min){
+  #video-holder{
+    height: 500px;
+  }
+}
+
+
+@media (min-width: @screen-md-min) {
+  
 }
 
 

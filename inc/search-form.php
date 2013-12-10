@@ -19,30 +19,26 @@
             </p>
                           
             
-            <p>
-              Blij
-            </p>
-            <div class="control-group">
-              <input id="happiness" class="inputNumber" hidden="hidden" value="3" />
-              <div class="input-slider" class="ui-slider"></div> 
-            </div>
-
-
-            <p>
-              Informatief
-            </p>
-            <div class="control-group">
-              <input id="informative" class="inputNumber" hidden="hidden" value="3" />
-              <div class="input-slider" class="ui-slider"></div> 
-            </div>
-
-
-            <p>
-              Amusant
-            </p>
-            <div class="control-group">
-              <input id="amusing" class="inputNumber" hidden="hidden" value="3" />
-              <div class="input-slider" class="ui-slider"></div> 
+            <div class="meta meta-ratings">
+            
+              <div class="control-group">
+                <p>Blij</p>
+                <input id="category1" class="inputNumber" hidden="hidden" value="3" />
+                <div class="input-slider" class="ui-slider"></div> 
+              </div>
+  
+              <div class="control-group">
+                <p>Historische relevantie</p>
+                <input id="category2" class="inputNumber" hidden="hidden" value="3" />
+                <div class="input-slider" class="ui-slider"></div> 
+              </div>
+  
+              <div class="control-group">
+                <p>Vermakelijk</p>
+                <input id="category3" class="inputNumber" hidden="hidden" value="3" />
+                <div class="input-slider" class="ui-slider"></div> 
+              </div>
+              
             </div>
 
               

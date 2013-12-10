@@ -67,6 +67,14 @@ String.prototype.repeat = function(num) {
   return new Array(num + 1).join(this);
 };
 
+
+function calcAge(dateString) {
+  var birthday = +new Date(dateString);
+  return ~~((Date.now() - birthday) / (31557600000));
+}
+
+
+
 (function($) {
 
     // jQuery UI Spinner
@@ -168,11 +176,9 @@ function getVideos(options){
     tag           : '',
     yearMin       : '',
     yearMax       : '',
-    setting       : '',
-    characters    : '',
-    happiness     : '',
-    interesting   : '',
-    amusing       : '',
+    category1     : '',
+    category2     : '',
+    category3     : '',
     featured      : ''
   };
   
@@ -202,7 +208,7 @@ function getVideos(options){
 		dataType: 'json',
 		success : function (data) {
       $(data.result).each(function(index){
-        data.result[index].images = this.Thumbnailsource.split(" , ");
+        data.result[index] = parseVideo(this);
       });
       result.resolve(data);
 		}	
@@ -228,8 +234,7 @@ function getVideo(ID){
 		dataType: 'json',
 		success : function (data) {
       $(data.result).each(function(index){
-        data.result[index].images = this.Thumbnailsource.split(" , ");
-        data.result[index].Tags = this.Tags.split(" , ");
+        data.result[index] = parseVideo(this);
       });
       result.resolve(data);
 		}	
@@ -242,6 +247,15 @@ function getVideo(ID){
 }
 
 
+
+function parseVideo(video){
+  video.images      = video.images.split(" , ");
+  video.tags        = video.tags.split(", ");
+  video.dob         = new Date(video.dob);
+  video.savedate    = new Date(video.savedate);
+  
+  return video;
+}
 
 
 
@@ -284,7 +298,7 @@ function loadFeaturedSlider(){
                         'controls preload="auto" width="100%" height="100%"'+
                         'poster="'+this.images[1]+'"'+
                         'data-setup="{example_option:true}">'+
-                       '<source src="'+this.Videosource+'" type="video/webm" />'+
+                       '<source src="'+this.videosource+'" type="video/webm" />'+
                       '</video>'+
                       '<img class="rsTmb" src="'+this.images[0]+'">'+
                     '</a>');
@@ -458,24 +472,28 @@ function initializeStories(){
     var post_data = { search      : $(this).find("#search").val(),
                       yearMin     : $(this).find("#yearMin").val(),
                       yearMax     : $(this).find("#yearMax").val(),
-                      happiness   : $(this).find("#happiness").val(),
-                      informative : $(this).find("#informative").val(),
-                      amusing     : $(this).find("#amusing").val()};
+                      category1   : $(this).find("#category1").val(),
+                      category2   : $(this).find("#category2").val(),
+                      category3   : $(this).find("#category3").val()};
+
     $('#storyContainer').html('<h5>Loading...</h5>');
+
     getVideos(post_data).done(function(data){  
       $('#storyContainer').html('');
+      
       $(data.result).each(function(index){
         var $item = $('<div class="col-sm-6 col-md-4">'+
-                          '<div class="thumbnail" data-video-src="'+this.Videosource+'" data-audio-src="'+this.AudioSource+'"><a href="story.php?id='+this.ID+'">'+
+                          '<div class="thumbnail" data-video-src="'+this.videosource+'" data-audio-src="'+this.audiosource+'"><a href="story.php?id='+this.ID+'">'+
                             '<img src="'+this.images[0]+'" alt="">'+
                             '<div class="caption">'+
-                              '<strong>'+this.Title+'</strong>'+
+                              '<strong>'+this.title+'</strong>'+
                             '</div>'+
                           '</a></div>'+
                         '</div>');
         
         $('#storyContainer').append($item);
       });
+      
     });
   
     return false;
@@ -490,18 +508,22 @@ function loadStories(){
 
 
 function showStories($target,stories){
+  
   $(stories).each(function(index){
+  
     var $item = $('<div class="col-sm-6 col-md-4">'+
-                      '<div class="thumbnail" data-video-src="'+this.Videosource+'" data-audio-src="'+this.AudioSource+'"><a href="story.php?id='+this.ID+'">'+
+                      '<div class="thumbnail" data-video-src="'+this.videosource+'" data-audio-src="'+this.audiosource+'"><a href="story.php?id='+this.ID+'">'+
                         '<img src="'+this.images[0]+'" alt="">'+
                         '<div class="caption">'+
-                          '<strong>'+this.Title+'</strong>'+
+                          '<strong>'+this.title+'</strong>'+
                         '</div>'+
                       '</a></div>'+
                     '</div>');
         
     $target.append($item);
+    
   });
+  
 }
 
 function searchStories(){
@@ -519,30 +541,37 @@ function initializeStory(){
 
 
 function loadStory(ID){
-  console.log('loadStory');
   getVideo(ID).done(function(data){
     if(data.result[0]){
       var story = data.result[0];
+      console.log(story);
       
-      $('#story h3.title').html(story.Title);
-      $('#story p.description').html(story.Description);
+      $('.video-details .title').html(story.title);
+      $('.video-details .date').html(story.savedate.toString('dd, MM ,yyyy'));
+      $('.video-details .description').html(story.description);
       
-      var $video = $('<video id="tutvideo" data-audio-src="'+story.AudioSource+'" class="video-js vjs-default-skin"'+
+      var $video = $('<video id="tutvideo" data-audio-src="'+story.audiosource+'" class="video-js vjs-default-skin"'+
                         'controls preload="auto" width="100%" height="100%"'+
                         'poster="'+story.images[1]+'"'+
                         'data-setup="{example_option:true}">'+
-                       '<source src="'+story.Videosource+'" type="video/webm" />'+
+                       '<source src="'+story.videosource+'" type="video/webm" />'+
                       '</video>');
       $('#video-holder').append($video);
       initializeVideoJS();
-      
 
-      $('#story .meta-happiness').data('value', story.Happiness);
-      $('#story .meta-informative').data('value', story.Interesting);
-      $('#story .meta-amusing').data('value', story.Amusing);
+      $('.video-details .name-age').html(story.name +" "+ calcAge(story.dob));
+
+      $('.video-details .year').html(story.year);
+      $('.video-details .object').html(story.object);
+      $('.video-details .location').html(story.location);
+      $('.video-details .cast').html(story.cast);
+
+      $('.video-details .meta-category1').data('value', story.category1);
+      $('.video-details .meta-category2').data('value', story.category2);
+      $('.video-details .meta-category3').data('value', story.category3);
       
-      $(story.Tags).each(function(){
-        $('#story .meta-tags').append($('<span><a href="'+SITEURL+'/tag.php?tag='+this+'" class="btn btn-primary">'+this+'</a> </span>'));
+      $(story.tags).each(function(){
+        $('.video-details .meta-tags').append($('<span><a href="'+SITEURL+'/tag.php?tag='+this+'" class="btn btn-primary">'+this+'</a> </span>'));
       });
       
       

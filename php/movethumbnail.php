@@ -19,7 +19,7 @@ else
 			$newID = $_GET["ID"];
 echo $newID;
 $con=mysqli_connect("localhost","root","","NOM");
-$sql ="UPDATE videos SET Thumbnailsource = ('$uploads_dir/$name') WHERE ID ='$newID'";
+$sql ="UPDATE videos SET images = ('$uploads_dir/$name') WHERE ID ='$newID'";
 if (!mysqli_query($con,$sql))
   {
   die('Error: ' . mysqli_error($con));
