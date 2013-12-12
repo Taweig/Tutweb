@@ -1,7 +1,7 @@
         <div>
           <h3>Zoek</h3>
           <form id="search-stories" role="search">
-            <input type="text" class="form-control" placeholder="Search" id="search">
+            <input type="text" class="form-control" placeholder="Search" id="search" value="<?=$searchVariable?>">
 
             <p>Jaartal tussen</p>
             <p>

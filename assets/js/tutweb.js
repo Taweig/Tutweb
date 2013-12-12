@@ -462,7 +462,7 @@ function loadMapMarkers(){
 
 
 function initializeStories(){
-  loadStories();
+  
   $('#search-stories').submit(function(event){
     /* stop form from submitting normally */
     event.preventDefault();
@@ -503,6 +503,15 @@ function initializeStories(){
   
     return false;
   });
+  
+  if($('#search').val() !== ''){
+    $('#search-stories').submit();
+  }else{
+    loadStories();
+  }
+
+  
+  
 }
 
 function loadStories(){

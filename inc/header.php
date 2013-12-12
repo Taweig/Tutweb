@@ -1,5 +1,9 @@
 <?php
   require_once('head.php');
+  $searchVariable = '';  
+  if(isset($_POST['search'])){
+    $searchVariable = $_POST['search'];
+  }
 ?>
   <body class="<?=$file?>">
     <nav class="navbar navbar-default" role="navigation">
@@ -21,9 +25,9 @@
             <li class="active"><a href="<?=$site_url?>">Home</a></li>
             <li><a href="<?=$site_url?>/stories.php">Stories</a></li>
           </ul>
-          <form class="navbar-form navbar-right" role="search">
+          <form class="navbar-form navbar-right" role="search" method="post" action="<?=$site_url?>/stories.php">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input name="search" type="text" class="form-control" placeholder="Search" value="<?=$searchVariable?>">
             </div>
             <button type="submit" class="btn btn-default sr-only">Submit</button>
           </form>
