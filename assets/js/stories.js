@@ -26,18 +26,23 @@ function initializeStories(){
     getVideos(post_data).done(function(data){  
       $('#storyContainer').html('');
       
-      $(data.result).each(function(index){
-        var $item = $('<div class="col-sm-6 col-md-4">'+
-                          '<div class="thumbnail" data-video-src="'+this.videosource+'" data-audio-src="'+this.audiosource+'"><a href="story.php?id='+this.ID+'">'+
-                            '<img src="'+this.images[0]+'" alt="">'+
-                            '<div class="caption">'+
-                              '<strong>'+this.title+'</strong>'+
-                            '</div>'+
-                          '</a></div>'+
-                        '</div>');
-        
-        $('#storyContainer').append($item);
-      });
+      if(data.result.length > 0){
+        $(data.result).each(function(index){
+          var $item = $('<div class="col-sm-6 col-md-4">'+
+                            '<div class="thumbnail" data-video-src="'+this.videosource+'" data-audio-src="'+this.audiosource+'"><a href="story.php?id='+this.ID+'">'+
+                              '<img src="'+this.images[0]+'" alt="">'+
+                              '<div class="caption">'+
+                                '<strong>'+this.title+'</strong>'+
+                              '</div>'+
+                            '</a></div>'+
+                          '</div>');
+          
+          $('#storyContainer').append($item);
+        });
+      }else{
+        $('#storyContainer').append('<h4 class="col-md-12">Sorry, geen resultaten gevonden...</h4>');
+      }
+      
       
     });
   
