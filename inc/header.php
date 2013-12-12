@@ -22,8 +22,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="<?=$site_url?>">Home</a></li>
+            <li><a href="<?=$site_url?>">Home</a></li>
             <li><a href="<?=$site_url?>/stories.php">Stories</a></li>
+            <li><a href="<?=$site_url?>/agenda.php">Agenda</a></li>
           </ul>
           <form class="navbar-form navbar-right" role="search" method="post" action="<?=$site_url?>/stories.php">
             <div class="form-group">
