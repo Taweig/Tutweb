@@ -5,8 +5,7 @@
  ***************************/
 
 function initializeHome(){
-  loadFeaturedSlider();
-  initializeMap();  
+  loadFeaturedSlider();  
 }
 
 

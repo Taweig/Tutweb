@@ -14,6 +14,7 @@ var KofferStory = {
     init: function() {
       // JS here
       initializeHome();
+      initializeMap();
     }
   },
   // Stories page
@@ -35,6 +36,12 @@ var KofferStory = {
     init: function() {
       // JS here
       initializeTag();
+    }
+  },
+  agenda: {
+    init: function(){
+      // JS here
+      initializeMap();
     }
   }
 };
@@ -284,8 +291,7 @@ function parseVideo(video){
  ***************************/
 
 function initializeHome(){
-  loadFeaturedSlider();
-  initializeMap();  
+  loadFeaturedSlider();  
 }
 
 
