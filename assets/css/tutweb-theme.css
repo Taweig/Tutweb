@@ -2305,3 +2305,40 @@ h5 {
     font-size: 14px;
   }
 }
+
+.koffer-storie-table th,
+.koffer-storie-table td {
+  display: none;
+}
+
+.koffer-storie-table th.ID,
+.koffer-storie-table td.ID,
+.koffer-storie-table th.title,
+.koffer-storie-table td.title,
+.koffer-storie-table th.images,
+.koffer-storie-table td.images,
+.koffer-storie-table th.savedate,
+.koffer-storie-table td.savedate,
+.koffer-storie-table th.actions,
+.koffer-storie-table td.actions {
+  display: table-cell;
+}
+
+.koffer-storie-table th.ID,
+.koffer-storie-table td.ID,
+.koffer-storie-table th.images,
+.koffer-storie-table td.images,
+.koffer-storie-table th.savedate,
+.koffer-storie-table td.savedate,
+.koffer-storie-table th.actions,
+.koffer-storie-table td.actions {
+  width: 50px;
+}
+
+.koffer-storie-table td.images {
+  padding: 0;
+}
+
+.koffer-storie-table td.images img {
+  width: 150px;
+}
