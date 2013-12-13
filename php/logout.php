@@ -1,6 +1,7 @@
-<?php 
+<?php
+require_once("../config.php");
 session_start();
 session_destroy();
-$main = "http://" . $_SERVER['HTTP_HOST'].'/admin.html';
+$main = $site_url.'/admin.php';
 print "You have been logged out. <a href=$main>Go back</a>";
 ?>

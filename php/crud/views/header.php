@@ -48,7 +48,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href='logout.php'>Log uit</a></li>
+            <li><a href='<?=$site_url?>/php/logout.php'>Log uit</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div>

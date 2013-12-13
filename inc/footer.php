@@ -16,7 +16,7 @@
             <ul class="bottom-links">
               <li><a href="<?=$site_url?>/wat-is-koffer-story.php">Wat is Koffer Story</a></li>
               <li><a href="<?=$site_url?>/faq.php">Veelgestelde vragen</a></li>
-              <li><a href="<?=$site_url?>/admin.html">Login</a></li>
+              <li><a href="<?=$site_url?>/admin.php">Login</a></li>
             </ul>
           </div>
 
