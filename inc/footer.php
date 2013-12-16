@@ -24,7 +24,7 @@
             <h5 class="title">&nbsp</h5>
             <ul class="bottom-links">
               <li><a href="<?=$site_url?>/privacy">Privacy</a></li>
-              <li><a href="<?=$site_url?>/privacy">Algemene Voorwaarden</a></li>
+              <li><a href="<?=$site_url?>/privacy#algemene-voorwaarden">Algemene Voorwaarden</a></li>
             </ul>
           </div>
 
