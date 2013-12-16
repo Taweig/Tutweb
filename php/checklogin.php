@@ -14,7 +14,7 @@ $count=mysql_num_rows($result);
 if($count==1){
 	session_start();
 	$_SESSION['CurrentUser'] = $myusername;
-	header("location:crud/index.php");
+	header("location:crud");
 }
 else {
 	echo "Wrong Username or Password";

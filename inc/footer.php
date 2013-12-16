@@ -6,25 +6,25 @@
             <h5 class="title">Navigatie</h5>
             <ul class="bottom-links">
               <li><a href="<?=$site_url?>">Home</a></li>
-              <li><a href="<?=$site_url?>/stories.php">Stories</a></li>
-              <li><a href="<?=$site_url?>/over-koffer-story.php">Agenda</a></li>
+              <li><a href="<?=$site_url?>/stories">Stories</a></li>
+              <li><a href="<?=$site_url?>/agenda">Agenda</a></li>
             </ul>
           </div>
 
           <div class="col-md-2">
             <h5 class="title">&nbsp</h5>
             <ul class="bottom-links">
-              <li><a href="<?=$site_url?>/wat-is-koffer-story.php">Wat is Koffer Story</a></li>
-              <li><a href="<?=$site_url?>/faq.php">Veelgestelde vragen</a></li>
-              <li><a href="<?=$site_url?>/admin.php">Login</a></li>
+              <li><a href="<?=$site_url?>/wat-is-koffer-story">Wat is Koffer Story</a></li>
+              <li><a href="<?=$site_url?>/faq">Veelgestelde vragen</a></li>
+              <li><a href="<?=$site_url?>/admin">Login</a></li>
             </ul>
           </div>
 
           <div class="col-md-2">
             <h5 class="title">&nbsp</h5>
             <ul class="bottom-links">
-              <li><a href="<?=$site_url?>/privacy.php">Privacy</a></li>
-              <li><a href="<?=$site_url?>/privacy.php">Algemene Voorwaarden</a></li>
+              <li><a href="<?=$site_url?>/privacy">Privacy</a></li>
+              <li><a href="<?=$site_url?>/privacy">Algemene Voorwaarden</a></li>
             </ul>
           </div>
 

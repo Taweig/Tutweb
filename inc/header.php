@@ -23,10 +23,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="<?=$site_url?>">Home</a></li>
-            <li><a href="<?=$site_url?>/stories.php">Stories</a></li>
-            <li><a href="<?=$site_url?>/agenda.php">Agenda</a></li>
+            <li><a href="<?=$site_url?>/stories">Stories</a></li>
+            <li><a href="<?=$site_url?>/agenda">Agenda</a></li>
           </ul>
-          <form class="navbar-form navbar-right" role="search" method="post" action="<?=$site_url?>/stories.php">
+          <form class="navbar-form navbar-right" role="search" method="post" action="<?=$site_url?>/stories">
             <div class="form-group">
               <input name="search" type="text" class="form-control" placeholder="Search" value="<?=$searchVariable?>">
             </div>

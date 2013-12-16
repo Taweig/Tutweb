@@ -490,7 +490,7 @@ function initializeStories(){
       if(data.result.length > 0){
         $(data.result).each(function(index){
           var $item = $('<div class="col-sm-6 col-md-4">'+
-                            '<div class="thumbnail" data-video-src="'+this.videosource+'" data-audio-src="'+this.audiosource+'"><a href="story.php?id='+this.ID+'">'+
+                            '<div class="thumbnail" data-video-src="'+this.videosource+'" data-audio-src="'+this.audiosource+'"><a href="'+SITEURL+'/'+this.ID+'">'+
                               '<img src="'+this.images[0]+'" alt="">'+
                               '<div class="caption">'+
                                 '<strong>'+this.title+'</strong>'+
@@ -532,7 +532,7 @@ function showStories($target,stories){
   $(stories).each(function(index){
   
     var $item = $('<div class="col-sm-6 col-md-4">'+
-                      '<div class="thumbnail" data-video-src="'+this.videosource+'" data-audio-src="'+this.audiosource+'"><a href="story.php?id='+this.ID+'">'+
+                      '<div class="thumbnail" data-video-src="'+this.videosource+'" data-audio-src="'+this.audiosource+'"><a href="'+SITEURL+'/'+this.ID+'">'+
                         '<img src="'+this.images[0]+'" alt="">'+
                         '<div class="caption">'+
                           '<strong>'+this.title+'</strong>'+

@@ -1,3 +1,4 @@
-#RewriteEngine On
-#RewriteCond %{SCRIPT_FILENAME} !-d
-#RewriteRule ^([^\.]+)$ $1.php [NC,L]
+RewriteEngine On
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^([A-Za-z-]+)$ $1.php [NC,L]
+RewriteRule ^([0-9]+)$ story.php?id=$1    [NC,L]    # Process all products
