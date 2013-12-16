@@ -256,6 +256,7 @@ function getVideo(ID){
 
 
 function parseVideo(video){
+  video.videosource = SITEURL+"/"+video.videosource;
   video.images      = video.images.split(" , ");
   video.tags        = video.tags.split(", ");
   video.dob         = new Date(video.dob);
