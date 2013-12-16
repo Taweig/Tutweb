@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 if(isset($_SESSION['CurrentUser'])){
 	
@@ -20,27 +20,29 @@ if(isset($_SESSION['CurrentUser'])){
   			</tr>
   		</thead>
   		<tbody>
-  				<?php 
-  					if($data !== 0) { foreach($data as $key => $value) 
-  					{
-  						echo '<tr>';
-  						foreach($fields_name as $f){
-  						  echo '<td class="'.$f.'">';
-  							if($f === 'images'){
-  							  echo "<img src='".explode(" , ", $value[$f])[0]."' />";
-  							}elseif($f === 'savedate'){
-    							echo date( 'd/m/Y  g:i A', strtotime($value[$f]));
-  							}else{
-    							echo $value[$f];
-  							}
-  							echo '</td>';
-  						}
-  						echo '<td class="actions"><a href="edit.php?id='.$value['ID'].'"><i class="fui-new"></i></a> <a href="delete.php?id='.$value['ID'].'"><i class="fui-trash"></i></a></td>
-  
-  						</tr>';
-  						
-  					}
-  					
+  				<?php
+  					if($data !== 0){
+  					  foreach($data as $key => $value){
+    						echo '<tr>';
+    						foreach($fields_name as $f){
+    						  echo '<td class="'.$f.'">';
+    							if($f === 'images'){
+    							  $image = explode(" , ", $value[$f]);
+    							  if(isset($image[0])){
+      							  $image = $image[0];
+    							  }
+    							  echo "<img src='".$image."' />";
+    							}elseif($f === 'savedate'){
+      							echo date( 'd/m/Y  g:i A', strtotime($value[$f]));
+    							}else{
+      							echo $value[$f];
+    							}
+    							echo '</td>';
+                }
+    						echo '<td class="actions"><a href="edit.php?id='.$value['ID'].'"><i class="fui-new"></i></a> <a href="delete.php?id='.$value['ID'].'"><i class="fui-trash"></i></a></td>
+    
+    						</tr>';
+    					}
   					}
   				?>
   		</tbody>
