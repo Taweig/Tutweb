@@ -8,7 +8,7 @@ $totalDirectorySize = 0;
 if ($handle = opendir($dir)) {
 	while (($file = readdir($handle)) !== false){
 		if (!in_array($file, array('.', '..')) && !is_dir($dir.$file)) {	
-			if (  substr(strrchr($file,'.'),1) == 'webm'){
+			if (  substr(strrchr($file,'.'),1) == 'mp4'){
 				$i++;   
 				array_push ($b,$file);
 				$size = filesize('uploads/'.$file);
@@ -18,7 +18,7 @@ if ($handle = opendir($dir)) {
 	}
 } 
 $responseArray = array('allnames' => $b,
-						'webmfiles'=> $i,
+						'mp4files'=> $i,
 						'directorySize' =>$totalDirectorySize);
 					//	'realpath' => realpath);
 						
