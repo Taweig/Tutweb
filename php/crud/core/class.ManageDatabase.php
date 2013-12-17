@@ -38,7 +38,11 @@
 		
 		function editData($table_name,$param,$id){
 			foreach($param as $key => $value){
-				$query = $this->link->query("UPDATE $table_name SET $key = '$value' WHERE id = '$id'");
+				if ($key == 'images' && $value ==""){
+					//skip empty fields
+				}else{
+					$query = $this->link->query("UPDATE $table_name SET $key = '$value' WHERE id = '$id'");
+				}
 			}
 		}
 		
