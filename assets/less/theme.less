@@ -21,11 +21,17 @@ h5{
   margin-bottom: 5px;
 }
 
-
+.navbar .nav{
+  margin-bottom: 0;
+}
 .navbar .navbar-brand{
-  padding: 20px;
+  padding: 10px;
+  img{ height: 30px; }
 }
 
+.navbar-form.navbar-right{
+  display: none;
+}
 
 //
 // Responsive: Landscape phone
@@ -164,7 +170,13 @@ h5{
 
 
 @media (min-width: @screen-md-min) {
-  
+  .navbar .navbar-brand {
+    padding: 20px;
+    img{ height: auto; }
+  }
+  .navbar-form.navbar-right{
+    display: block;
+  }
 }
 
 

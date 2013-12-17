@@ -25,6 +25,8 @@
             <li><a href="<?=$site_url?>">Home</a></li>
             <li><a href="<?=$site_url?>/stories">Stories</a></li>
             <li><a href="<?=$site_url?>/agenda">Agenda</a></li>
+            <li><a href="<?=$site_url?>/wat-is-koffer-story">Wat is Koffer Story</a></li>
+            <li><a href="<?=$site_url?>/admin">Login</a></li>
           </ul>
           <form class="navbar-form navbar-right" role="search" method="post" action="<?=$site_url?>/stories">
             <div class="form-group">
