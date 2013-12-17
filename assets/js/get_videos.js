@@ -89,6 +89,10 @@ function getVideo(ID){
 function parseVideo(video){
   video.videosource = SITEURL+"/"+video.videosource;
   video.images      = video.images.split(" , ");
+  if(video.images.length  === 1){
+    video.images[0] = SITEURL+"/assets/images/no-thumb_small.jpg";
+    video.images[1] = SITEURL+"/assets/images/no-thumb.jpg";
+  }
   video.tags        = video.tags.split(", ");
   video.dob         = new Date(video.dob);
   video.savedate    = new Date(video.savedate);

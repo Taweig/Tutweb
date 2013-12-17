@@ -258,6 +258,10 @@ function getVideo(ID){
 function parseVideo(video){
   video.videosource = SITEURL+"/"+video.videosource;
   video.images      = video.images.split(" , ");
+  if(video.images.length  === 1){
+    video.images[0] = SITEURL+"/assets/images/no-thumb_small.jpg";
+    video.images[1] = SITEURL+"/assets/images/no-thumb.jpg";
+  }
   video.tags        = video.tags.split(", ");
   video.dob         = new Date(video.dob);
   video.savedate    = new Date(video.savedate);
@@ -298,14 +302,14 @@ function initializeHome(){
 
 function loadFeaturedSlider(){
   console.log('loadFeaturedSlider');
-  getVideos().done(function(data){  
+  getVideos({featured: 1}).done(function(data){  
     $(data.result).each(function(index){
       var $item = $('<a data-rsw="1140" data-rsh="760">'+
                       '<video id="tutvideo" data-audio-src="'+this.AudioSource+'" class="video-js vjs-default-skin"'+
                         'controls preload="auto" width="100%" height="100%"'+
                         'poster="'+this.images[1]+'"'+
                         'data-setup="{example_option:true}">'+
-                       '<source src="'+this.videosource+'" type="video/webm" />'+
+                       '<source src="'+this.videosource+'" type="video/mp4" />'+
                       '</video>'+
                       '<img class="rsTmb" src="'+this.images[0]+'">'+
                     '</a>');
@@ -348,7 +352,7 @@ function initializeFeaturedSlider(){
     },
     autoScaleSlider: true, 
     autoScaleSliderWidth: 1140,     
-    autoScaleSliderHeight: 760,
+    autoScaleSliderHeight: 920,
 
     /* size of all images http://help.dimsemenov.com/kb/royalslider-jquery-plugin-faq/adding-width-and-height-properties-to-images */
     imgWidth: 640,
@@ -575,7 +579,7 @@ function loadStory(ID){
                         'controls preload="auto" width="100%" height="100%"'+
                         'poster="'+story.images[1]+'"'+
                         'data-setup="{example_option:true}">'+
-                       '<source src="'+story.videosource+'" type="video/webm" />'+
+                       '<source src="'+story.videosource+'" type="video/mp4" />'+
                       '</video>');
       $('#video-holder').append($video);
       initializeVideoJS();
