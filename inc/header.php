@@ -30,7 +30,7 @@
           </ul>
           <form class="navbar-form navbar-right" role="search" method="post" action="<?=$site_url?>/stories">
             <div class="form-group">
-              <input name="search" type="text" class="form-control" placeholder="Search" value="<?=$searchVariable?>">
+              <input name="search" type="text" class="form-control" placeholder="Zoek" value="<?=$searchVariable?>">
             </div>
             <button type="submit" class="btn btn-default sr-only">Submit</button>
           </form>
